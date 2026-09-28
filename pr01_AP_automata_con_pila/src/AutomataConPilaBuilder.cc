@@ -23,16 +23,16 @@
 #include <limits>
 
 //**
-// void AutomataConPilaBuilder::saltarComentarios(std::ifstream& inf) {
+// void AutomataConPilaBuilder::saltarComentarios() {
 // }
 //  */
 
-std::map<identificadorEstado, Estado*> AutomataConPilaBuilder::construirEstados(std::ifstream& inf) {
+std::map<identificadorEstado, Estado*> AutomataConPilaBuilder::construirEstados() {
   // ahora se supone que empezamos a leer estados
   std::map<identificadorEstado, Estado*> estados;
 
   std::string linea;
-  std::getline(inf, linea);
+  std::getline(inf_, linea);
         
   // comprobamos que hayamos leído algo
   if (linea.empty()) throw std::runtime_error("Error: No se han definido estados."); 
@@ -55,12 +55,12 @@ std::map<identificadorEstado, Estado*> AutomataConPilaBuilder::construirEstados(
  * @param bool que indica que si se trata de un alfabeto de cadena (true) o de pila (false) 
  * @return alfabeto para comprobar la construcción del AP
  */
-std::set<SimboloCadena> AutomataConPilaBuilder::construirAlfabeto(std::ifstream& inf, bool alfabeto_de_cinta) {
+std::set<SimboloCadena> AutomataConPilaBuilder::construirAlfabeto(bool alfabeto_de_cinta) {
   // ahora se supone que empezamos a leer estados
   std::set<SimboloCadena> alfabeto;
 
   std::string linea;
-  std::getline(inf, linea);
+  std::getline(inf_, linea);
         
   // comprobamos que hayamos leído algo
   if (linea.empty()) throw std::runtime_error("Error: No se ha definido el alfabeto de la cadena."); 
@@ -91,10 +91,10 @@ std::set<SimboloCadena> AutomataConPilaBuilder::construirAlfabeto(std::ifstream&
   return alfabeto;
 }
 
-identificadorEstado AutomataConPilaBuilder::construirEstadoInicial(std::ifstream& inf) {
+identificadorEstado AutomataConPilaBuilder::construirEstadoInicial() {
   // ahora toca leer cúal es el estado inicial
   std::string linea;
-  std::getline(inf, linea);
+  std::getline(inf_, linea);
         
   // comprobamos que hayamos leído algo
   if (linea.empty()) throw std::runtime_error("Error: No se ha definido ningún estado inicial."); 
@@ -112,10 +112,10 @@ identificadorEstado AutomataConPilaBuilder::construirEstadoInicial(std::ifstream
   return estado_inicial;
 }
 
-SimboloPila AutomataConPilaBuilder::construirSimboloInicialPila(std::ifstream& inf) {
+SimboloPila AutomataConPilaBuilder::construirSimboloInicialPila() {
   // ahora toca leer cúal es el símbolo inicial
   std::string linea;
-  std::getline(inf, linea);
+  std::getline(inf_, linea);
         
   // comprobamos que hayamos leído algo
   if (linea.empty()) throw std::runtime_error("Error: No se ha definido ningún símbolo inicial para la pila."); 
@@ -139,12 +139,12 @@ SimboloPila AutomataConPilaBuilder::construirSimboloInicialPila(std::ifstream& i
           (en caso de existir este método retornará la dirección de memoria del elemento en memoria dinámica)
   @return vector de identificadores 
  */
-std::vector<identificadorEstado> AutomataConPilaBuilder::construirListaEstadosFinales(std::ifstream& inf) {
+std::vector<identificadorEstado> AutomataConPilaBuilder::construirListaEstadosFinales() {
   // ahora se supone que empezamos a leer estados
   std::vector<identificadorEstado> identificadores_estados_finales;
   
   std::string linea;
-  std::getline(inf, linea);
+  std::getline(inf_, linea);
   
   // comprobamos que hayamos leído algo
   if (linea.empty()) throw std::runtime_error("Error: No se han definido estados de aceptación."); 
@@ -203,9 +203,9 @@ std::vector<Estado*> AutomataConPilaBuilder::comprobarExistenciaEstado(
 /**
  * @brief método que añade las transiciones para un estado directamente desde el archivo
  */
-void AutomataConPilaBuilder::construirTransiciones(std::ifstream& inf, std::map<identificadorEstado, Estado*> estados) {
+void AutomataConPilaBuilder::construirTransiciones(std::map<identificadorEstado, Estado*> estados) {
   std::string linea;
-  std::getline(inf, linea);
+  std::getline(inf_, linea);
 
   // Imprimimos la construcción
   std::cout << "+------ Procesando transición: " << linea << " -----+" << std::endl;
@@ -252,7 +252,7 @@ void AutomataConPilaBuilder::construirTransiciones(std::ifstream& inf, std::map<
   SimboloPila temporal;
   while (ss >> temporal) {
     comprobar_pertencia_simbolopila_alfabeto(temporal);
-    cadena_escribir_en_pila.push_back(temporal);
+    if(temporal != '.') cadena_escribir_en_pila.push_back(temporal);
     std::cout << "|  Simbolo procesado: " << temporal << std::endl;
   }
 
@@ -268,54 +268,54 @@ void AutomataConPilaBuilder::construirTransiciones(std::ifstream& inf, std::map<
 }
 
 AutomataConPila AutomataConPilaBuilder::construirDesdeArchivo(const std::string& nombre_fichero) {
-  std::ifstream inf{nombre_fichero};
-  if (!inf) throw std::runtime_error("Error: No se pudo abrir el archivo: " + nombre_fichero);
+  inf_.open(nombre_fichero);
+  if (!inf_) throw std::runtime_error("Error: No se pudo abrir el archivo: " + nombre_fichero);
 
-  saltarComentarios(inf); // saltamos posibles comentarios de más
+  saltarComentarios(); // saltamos posibles comentarios de más
 
   // 1. Leemos los estados
-  std::map<identificadorEstado, Estado*> estados = construirEstados(inf);
+  std::map<identificadorEstado, Estado*> estados = construirEstados();
 
   // ---- ¡¡Hemos obtenido 1 de nuestros elementos del AP!! ---- (estados_)
   
   // 2. ahora toca leer el alfabeto de la cadena y la pila
-  saltarComentarios(inf); // saltamos posibles comentarios de más
-  alfabeto_cadena_ = construirAlfabeto(inf);
-  saltarComentarios(inf); // saltamos posibles comentarios de más
-  alfabeto_pila_ = construirAlfabeto(inf, false);
-  saltarComentarios(inf); // saltamos posibles comentarios de más
+  saltarComentarios(); // saltamos posibles comentarios de más
+  alfabeto_cadena_ = construirAlfabeto();
+  saltarComentarios(); // saltamos posibles comentarios de más
+  alfabeto_pila_ = construirAlfabeto(false);
+  saltarComentarios(); // saltamos posibles comentarios de más
 
   // ---- estos nos servirán para comprobar que en el resto del archivo no se especifican transiciones NO válidas ----
   
   // 3. Leemos el estado inicial que será estado_actual de nuestro autómata
-  identificadorEstado identificador_estado_inicial = construirEstadoInicial(inf);
+  identificadorEstado identificador_estado_inicial = construirEstadoInicial();
   Estado* estado_inicial = comprobarExistenciaEstado(estados, identificador_estado_inicial); 
   
   // ---- ¡¡Hemos obtenido 1 de nuestros elementos del AP!! ---- (estado_actual_)
   
-  saltarComentarios(inf); // saltamos posibles comentarios de más
+  saltarComentarios(); // saltamos posibles comentarios de más
 
   // 4. Ahora leemos el símbolo inicial de la pila (necesario para que hayan transiciones)
-  SimboloPila simbolo_inicial_pila = construirSimboloInicialPila(inf);
+  SimboloPila simbolo_inicial_pila = construirSimboloInicialPila();
   comprobar_pertencia_simbolopila_alfabeto(simbolo_inicial_pila);
 
   // ---- ¡¡Hemos obtenido 1 de nuestros elementos de nuestra pila!! ---- (valor de entrada para el constructor)
 
-  saltarComentarios(inf); // saltamos posibles comentarios de más
+  saltarComentarios(); // saltamos posibles comentarios de más
 
   // 5. Ahora debemos de leer la lista de Estados de aceptación
-  std::vector<identificadorEstado> identificadores_estados_finales = construirListaEstadosFinales(inf);
+  std::vector<identificadorEstado> identificadores_estados_finales = construirListaEstadosFinales();
   // ahora deberíamos de comprobar que dichos estados existen y obtenerlos
   std::vector<Estado*> estados_finales = comprobarExistenciaEstado(estados, identificadores_estados_finales);
 
   // ---- ¡¡Hemos obtenido 1 de nuestros elementos de nuestra pila!! ---- (estados_finales_)
 
-  saltarComentarios(inf); // saltamos posibles comentarios de más
+  saltarComentarios(); // saltamos posibles comentarios de más
 
   // 6. Ahora debemos de leer la lista de funciones de transición (cada línea será una función de transición)
-  while (!inf.eof() && inf.peek() != ' ') {
-    construirTransiciones(inf, estados);
-    saltarComentarios(inf); // saltamos posibles comentarios de más
+  while (!inf_.eof() && inf_.peek() != ' ') {
+    construirTransiciones(estados);
+    saltarComentarios(); // saltamos posibles comentarios de más
   }
   // ---- ¡¡Hemos completado 1 de nuestros elementos del AP!! ---- (transiciones de cada Estado)
 

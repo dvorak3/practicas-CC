@@ -1,7 +1,7 @@
 vpath %.cc ../src/
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall
-files := main.cc AutomataConPilaBuilder.cc Estado.cc
+files := main.cc AutomataConPila.cc AutomataConPilaBuilder.cc Estado.cc
 
 automata_pila: $(files)
 	$(CXX) $(CXXFLAGS) $^ -o $@

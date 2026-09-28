@@ -20,12 +20,25 @@
 #include "Estado.h"
 #include "Pila.h"
 
+#include <set>
+#include <utility>
 #include <vector>
+
+/**
+ * @brief una Configuración es un struct auxiliar que nos va a ayudar a guardar para un estado X, que cadena le quedaba
+          y que tenía escrito en la pila
+ */
+struct ConfiguracionPendiente {
+  Estado* estado; // estado = el estado al que transitar desde estado_actual_
+  size_t  posicion_cadena;
+  Pila pila;
+};
 
 class AutomataConPila {
  public:
   /**
    * @brief método que construye el AP, el cual es responsable de la eliminación de los estados en su destrucción
+   *        además inicializa el estado inicial del autómata
    */
   AutomataConPila(std::vector<Estado*> estados,
                   Estado* estado_actual,
@@ -33,19 +46,16 @@ class AutomataConPila {
                   SimboloPila simbolo_inicial_pila)
     : estados_(std::move(estados)),
       estado_actual_(estado_actual),
-      estados_finales_(std::move(estados_finales)),
+      estados_finales_(estados_finales.begin(), estados_finales.end()),
       pila_(simbolo_inicial_pila) {}
 
-  // constructor que inicializa el Estado inicial...
-  //Automata();
-
   // método que comienza la ejecución de todo el Autómata
-  // leerCadena();
+  bool leerCadena(const std::vector<SimboloCadena>& cadena);
 
  private:
   std::vector<Estado*>  estados_;
   Estado*               estado_actual_;
-  std::vector<Estado*>  estados_finales_;
+  std::set<Estado*>     estados_finales_;
   Pila                  pila_;
 };
 

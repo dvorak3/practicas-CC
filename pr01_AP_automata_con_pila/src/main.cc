@@ -4,5 +4,6 @@
 
 int main(int argc, char* argv[]) {
   AutomataConPilaBuilder lector;
-  lector.construirDesdeArchivo(argv[1]);
+  AutomataConPila AP = lector.construirDesdeArchivo(argv[1]);
+  std::cout << "La cadena es: " << AP.leerCadena({'a', 'b'}) << std::endl;
 }

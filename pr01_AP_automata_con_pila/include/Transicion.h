@@ -19,6 +19,7 @@
 
 #include "Tipos.h"
 
+#include <iostream>
 #include <vector>
 
 // Declaración adelantada de la clase Estado
@@ -43,5 +44,12 @@ struct ResultadoTransicion {
   Estado* proximo_estado_;
   std::vector<SimboloPila> cadena_a_escribir_en_pila_;
 };
+
+/**
+std::ostream& operator<<(std::ostream& os, const EntradaTransicion& p) {
+  os << "Nombre: " << p.nombre << ", Edad: " << p.edad;
+  return os; // Es obligatorio devolver el flujo
+}
+*/
 
 #endif

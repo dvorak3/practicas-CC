@@ -42,8 +42,8 @@ class AutomataConPilaBuilder {
 
  protected:
   // método propio de la construcción por archivo que se salta cualquier cantidad de comentarios del mismo
-  inline void saltarComentarios(std::ifstream& inf) {
-    while (inf.peek() == '#') inf.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  inline void saltarComentarios() {
+    while (inf_.peek() == '#') inf_.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   }
   
   // ========================== métodos de alfabeto ========================== 
@@ -60,18 +60,18 @@ class AutomataConPilaBuilder {
   }
 
   // método que construye el alfabeto que se utilizará para validar durante la construcción de las transiciones 
-  std::set<SimboloCadena> construirAlfabeto( std::ifstream& inf, bool alfabeto_de_cinta = true);
+  std::set<SimboloCadena> construirAlfabeto(bool alfabeto_de_cinta = true);
 
   // ========================== métodos de estados ========================== 
   
   // método que construye el atributo estados_ del AP
-  std::map<identificadorEstado, Estado*> construirEstados(std::ifstream& inf);
+  std::map<identificadorEstado, Estado*> construirEstados();
 
   // método que construye el atributo estado_actual con su valor inicial
-  identificadorEstado construirEstadoInicial(std::ifstream& inf);
+  identificadorEstado construirEstadoInicial();
 
   // método que construye la lista de estados finales
-  std::vector<identificadorEstado> construirListaEstadosFinales(std::ifstream& inf);
+  std::vector<identificadorEstado> construirListaEstadosFinales();
 
   // método que comprueba que un estado especificado en alguna de las reglas exista
   Estado* comprobarExistenciaEstado(const std::map<identificadorEstado, Estado*>& estados, const identificadorEstado& identificador_estado);
@@ -83,19 +83,18 @@ class AutomataConPilaBuilder {
   // ========================== métodos de transiciones ========================== 
 
   // método que añade las transiciones para un estado directamente desde el archivo
-  void construirTransiciones(std::ifstream& inf, std::map<identificadorEstado, Estado*> estados);
+  void construirTransiciones(std::map<identificadorEstado, Estado*> estados);
 
 
   // ========================== métodos de pila ========================== 
 
-  //Pila construirPila(std::ifstream& inf);
-  
   // método que construye el primer símbolo de la pila (obligatorio para el comienzo del funcionamiento)
-  SimboloPila construirSimboloInicialPila(std::ifstream& inf);
+  SimboloPila construirSimboloInicialPila();
 
  private:
+  std::ifstream           inf_;     // archivo abierto del que se va a leer el AP
   std::set<SimboloCadena> alfabeto_cadena_;
-  std::set<SimboloPila> alfabeto_pila_;
+  std::set<SimboloPila>   alfabeto_pila_;
 };
 
 #endif

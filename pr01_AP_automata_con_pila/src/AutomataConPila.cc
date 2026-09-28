@@ -16,6 +16,84 @@
 
 #include "../include/AutomataConPila.h"
 
-void AutomataConPila::leerCadena(cadena) {
-  estado_actual->traTransicion{simbolo_cadena_actual_, pila_.top()}
+#include <stack>
+
+/**
+* @brief método que comienza la ejecución de todo el Autómata
+* @param std::vector<SimboloCadena>  un vector de simbolos de la cadena a procesar
+* @return si la cadena es aceptada o no 
+*/ 
+/**
+bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena) {
+  std::cout << pila_.cima() << std::endl;
+  // 0. Necesitaremos un sitio dónde guardar todas nuestras posibles transiciones pendientes → las guardamos en una pila
+  std::stack<Configuracion> configuraciones;
+
+  // 1. iremos consumiendo cada Simbolo de la Cadena hasta llegar al final de una rama
+  for (size_t i{0}; i < cadena.size();) {
+    // 2. obtenemos las posibles transiciones actuales para la configuración actual
+    std::vector<ResultadoTransicion> posibles_transiciones = estado_actual_->obtenerTransiciones({cadena[i], pila_.cima()});
+
+    // ======= si no hemos obtenido transiciones debemos comprobar si nuestro Estado actual es uno de ACEPTACIÓN =======
+    if (posibles_transiciones.size() == 0 && estados_finales_.count(estado_actual_)) return 1;
+    // =================================================================================================================
+
+    // 4. de lo contrario... nuestro método de ordenación de las transiciones es alfabético / númerico, así que... 
+    //    como vamos a transicionar en profundidad, sacaremos la primera transición y el resto las guardaremos
+    for (size_t j{1}; j < posibles_transiciones.size(); ++j)
+      configuraciones.push_back(Configuracion{posibles_transiciones[j].proximo_estado_, i, pila_});
+
+    // 5. transicionamos
+    estado_actual_ = posibles_transiciones[0].proximo_estado_;
+    pila_.apilar(std::vector<SimboloPila>(cadena.begin() + i, cadena.end()));
+    // si nuestra transición 
+  }
+  return true;
+}
+*/
+
+/**
+* @brief método que comienza la ejecución de todo el Autómata
+* @param std::vector<SimboloCadena>  un vector de simbolos de la cadena a procesar
+* @return si la cadena es aceptada o no 
+*/ 
+bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena) {
+  // 0. Necesitaremos un sitio dónde guardar todas nuestras posibles transiciones pendientes → las guardamos en una pila
+  // aquí guardamos, para esta configuración X existe esta posible salida
+  std::stack<ConfiguracionPendiente> configuraciones_pendientes_;
+  size_t                             posicion_sobre_cadena{0};
+
+  do {
+    // metemos las transiciones iniciales VACIAS luego las NO VACIAS
+    std::vector<SimboloCadena> simbolos_a_consumir{SIMBOLO_CADENA_VACIO};
+    if(posicion_sobre_cadena != cadena.size()) simbolos_a_consumir.push_back(cadena[posicion_sobre_cadena]); 
+
+    for (size_t j{0}; j < simbolos_a_consumir.size(); ++j) {
+      std::vector<ResultadoTransicion> posibles_transiciones = estado_actual_->obtenerTransiciones(EntradaTransicion{simbolos_a_consumir[j], pila_.cima()});
+      for (size_t i{posibles_transiciones.size()}; i > 0; --i) {
+        Estado* proximo_estado =  posibles_transiciones[i - 1].proximo_estado_;
+        Pila    pila_ya_escrita = pila_;
+        pila_ya_escrita.desapilar();
+        pila_ya_escrita.apilar(posibles_transiciones[i - 1].cadena_a_escribir_en_pila_);
+        
+        configuraciones_pendientes_.push(ConfiguracionPendiente{proximo_estado, posicion_sobre_cadena + j, pila_ya_escrita});
+      }
+    }
+
+    // Si no hay sucesoras ni alternativas, la ejecución ha fallado.
+    if (configuraciones_pendientes_.empty()) return false;
+
+    // ahora transicionamos a la transición en lo alto de la cima
+    ConfiguracionPendiente nueva_configuracion = configuraciones_pendientes_.top();
+    estado_actual_        = nueva_configuracion.estado;
+    posicion_sobre_cadena = nueva_configuracion.posicion_cadena; 
+    pila_                 = nueva_configuracion.pila;
+
+    configuraciones_pendientes_.pop();
+
+    // ================= CONDICIÓN DE PARADA ====================
+    if (posicion_sobre_cadena == cadena.size() && estados_finales_.count(estado_actual_)) return 1;
+    // ==========================================================
+
+  } while(true);
 }

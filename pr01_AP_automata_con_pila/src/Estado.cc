@@ -25,3 +25,17 @@
   return transiciones_[transicion];
 }
 */
+
+/**
+  * @brief método que obtiene las transiciones para el estado actual
+  * @return un vector con todos las transiciones
+  */
+std::vector<ResultadoTransicion> Estado::obtenerTransiciones(const EntradaTransicion& transicion) {
+  std::vector<ResultadoTransicion> resultado_transiciones;
+
+  auto transiciones_para_entrada = transiciones_.equal_range(transicion);
+  for (auto it = transiciones_para_entrada.first; it != transiciones_para_entrada.second; ++it)
+    resultado_transiciones.push_back(it->second); // metemos
+
+  return resultado_transiciones;
+}

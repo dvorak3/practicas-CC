@@ -28,12 +28,17 @@ class Estado {
  public:
   //ResultadoTransicion obtenerTransiciones(Transicion);
 
-  void añadirTransicion(EntradaTransicion entrada_transicion, ResultadoTransicion resultado_transicion) {
+  // método que añade una transición con origen en el Estado actual
+  inline void añadirTransicion(EntradaTransicion entrada_transicion, ResultadoTransicion resultado_transicion) {
     transiciones_.emplace(entrada_transicion, resultado_transicion);
   }
+
+  // método que obtiene las transiciones NO vacías para el estado actual
+  std::vector<ResultadoTransicion> obtenerTransiciones(const EntradaTransicion& transicion);
 
  private:
   std::multimap<EntradaTransicion, ResultadoTransicion> transiciones_;
 };
+
 
 #endif

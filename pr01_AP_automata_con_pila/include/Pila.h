@@ -19,7 +19,7 @@
 
 class Pila {
  public:
-  // constructor - requiere sí o sí un símbolo inicial
+  // constructor - una pila requiere sí o sí un símbolo inicial
   Pila(SimboloPila simbolo_inicial) {
     apilar(simbolo_inicial);
   }
