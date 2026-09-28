@@ -46,6 +46,15 @@ class AutomataConPilaBuilder {
   // construirEstados();
 
  protected:
+    // Libera los estados creados durante la construcción si esta falla.
+    void borrarEstados(std::map<identificadorEstado, Estado*>& estados) noexcept {
+      for (auto& [identificador, estado] : estados) {
+        (void)identificador;
+        delete estado;
+      }
+      estados.clear();
+    }
+
   // método propio de la construcción por archivo que se salta cualquier cantidad de comentarios del mismo
   inline void saltarComentarios() {
     while (inf_.peek() == '#') inf_.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

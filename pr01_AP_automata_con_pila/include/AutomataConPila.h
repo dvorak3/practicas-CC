@@ -45,6 +45,9 @@ class AutomataConPila {
       estados_finales_(estados_finales.begin(), estados_finales.end()),
       pila_(simbolo_inicial_pila),
       simbolo_inicial_pila_(simbolo_inicial_pila) {}
+
+  AutomataConPila(const AutomataConPila&) = delete;
+  AutomataConPila& operator=(const AutomataConPila&) = delete;
   
   ~AutomataConPila() {
     for (Estado* estado : estados_)

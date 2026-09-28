@@ -19,6 +19,7 @@
 
 #include <fstream> // para la lectura de archivos
 #include <iostream>
+#include <memory>
 #include <sstream> // para tener un buffer extra
 #include <limits>
 
@@ -56,21 +57,29 @@ std::map<identificadorEstado, Estado*> AutomataConPilaBuilder::construirEstados(
   // ahora se supone que empezamos a leer estados
   std::map<identificadorEstado, Estado*> estados;
 
-  std::string linea;
-  std::getline(inf_, linea);
+  try {
+    std::string linea;
+    std::getline(inf_, linea);
         
-  // comprobamos que hayamos leído algo
-  if (linea.empty()) throw std::runtime_error("Error: No se han definido estados."); 
+    // comprobamos que hayamos leído algo
+    if (linea.empty()) throw std::runtime_error("Error: No se han definido estados."); 
 
-  // 2. Metemos la línea dentro de un flujo de texto
-  std::stringstream ss(linea); 
-  std::string estado;
+    // 2. Metemos la línea dentro de un flujo de texto
+    std::stringstream ss(linea); 
+    std::string estado;
 
-  // 3. Extraemos los elementos de ESA línea individualmente con >>
-  while (ss >> estado) {
+    // 3. Extraemos los elementos de ESA línea individualmente con >>
+    while (ss >> estado) {
       std::cout << "Estado procesado: " << estado << '\n';
       // if (estado[0] != 'q') throw std::runtime_error("Error: no se ha definido un estado con el formato adecuado: " + estado);
-      estados.insert({estado, new Estado(estado)});
+      auto nuevo_estado = std::make_unique<Estado>(estado);
+      const auto [it, insertado] = estados.emplace(estado, nuevo_estado.get());
+      (void)it;
+      if (insertado) nuevo_estado.release();
+    }
+  } catch (...) {
+    borrarEstados(estados);
+    throw;
   }
   return estados;
 }
@@ -303,6 +312,7 @@ AutomataConPila AutomataConPilaBuilder::construirDesdeArchivo(const std::string&
   // 1. Leemos los estados
   std::map<identificadorEstado, Estado*> estados = construirEstados();
 
+  try {
   // ---- ¡¡Hemos obtenido 1 de nuestros elementos del AP!! ---- (estados_)
   
   // 2. ahora toca leer el alfabeto de la cadena y la pila
@@ -351,4 +361,8 @@ AutomataConPila AutomataConPilaBuilder::construirDesdeArchivo(const std::string&
   for(auto it = estados.begin(); it != estados.end(); ++it)
     puntero_a_los_estados_sin_id.push_back(it->second);
   return AutomataConPila(puntero_a_los_estados_sin_id, estado_inicial, estados_finales, simbolo_inicial_pila); 
+  } catch (...) {
+    borrarEstados(estados);
+    throw;
+  }
 }
