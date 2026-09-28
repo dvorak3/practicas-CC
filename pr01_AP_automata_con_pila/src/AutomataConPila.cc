@@ -58,22 +58,31 @@ bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena) {
 * @return si la cadena es aceptada o no 
 */ 
 bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena) {
+  // reiniciamos para una nueva cadena
+  estado_actual_ = estado_inicial_;
+  pila_ = Pila(simbolo_inicial_pila_);
+  // -----
   // 0. Necesitaremos un sitio dónde guardar todas nuestras posibles transiciones pendientes → las guardamos en una pila
   // aquí guardamos, para esta configuración X existe esta posible salida
   std::stack<ConfiguracionPendiente> configuraciones_pendientes_;
   size_t                             posicion_sobre_cadena{0};
 
   do {
+    // ================= CONDICIÓN DE PARADA ====================
+    if (posicion_sobre_cadena == cadena.size() && estados_finales_.count(estado_actual_)) return 1;
+    // ==========================================================
+
     // metemos las transiciones iniciales VACIAS luego las NO VACIAS
     std::vector<SimboloCadena> simbolos_a_consumir{SIMBOLO_CADENA_VACIO};
     if(posicion_sobre_cadena != cadena.size()) simbolos_a_consumir.push_back(cadena[posicion_sobre_cadena]); 
 
     for (size_t j{0}; j < simbolos_a_consumir.size(); ++j) {
-      std::vector<ResultadoTransicion> posibles_transiciones = estado_actual_->obtenerTransiciones(EntradaTransicion{simbolos_a_consumir[j], pila_.cima()});
+      std::vector<ResultadoTransicion> posibles_transiciones;
+      if (!pila_.estaVacia()) posibles_transiciones = estado_actual_->obtenerTransiciones(EntradaTransicion{simbolos_a_consumir[j], pila_.cima()});
       for (size_t i{posibles_transiciones.size()}; i > 0; --i) {
         Estado* proximo_estado =  posibles_transiciones[i - 1].proximo_estado_;
         Pila    pila_ya_escrita = pila_;
-        pila_ya_escrita.desapilar();
+        if (!pila_ya_escrita.estaVacia()) pila_ya_escrita.desapilar();
         pila_ya_escrita.apilar(posibles_transiciones[i - 1].cadena_a_escribir_en_pila_);
         
         configuraciones_pendientes_.push(ConfiguracionPendiente{proximo_estado, posicion_sobre_cadena + j, pila_ya_escrita});
@@ -91,9 +100,6 @@ bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena) {
 
     configuraciones_pendientes_.pop();
 
-    // ================= CONDICIÓN DE PARADA ====================
-    if (posicion_sobre_cadena == cadena.size() && estados_finales_.count(estado_actual_)) return 1;
-    // ==========================================================
 
   } while(true);
 }

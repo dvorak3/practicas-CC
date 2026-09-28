@@ -27,6 +27,31 @@
 // }
 //  */
 
+std::vector<std::vector<SimboloCadena>> AutomataConPilaBuilder::leerCadenasDesdeArchivo(
+    const std::string& nombre_fichero) const {
+  std::ifstream inf{nombre_fichero};
+  if (!inf) {
+    throw std::runtime_error("Error: No se pudo abrir el fichero de cadenas: " + nombre_fichero);
+  }
+
+  std::vector<std::vector<SimboloCadena>> cadenas;
+  std::string linea;
+  while (std::getline(inf, linea)) {
+    if (!linea.empty() && linea.back() == '\r') linea.pop_back();
+    if (linea.empty()) continue;
+    if (linea == ".") {
+      cadenas.emplace_back();
+    } else {
+      cadenas.emplace_back(linea.begin(), linea.end());
+    }
+  }
+
+  if (inf.bad()) {
+    throw std::runtime_error("Error: Fallo al leer el fichero de cadenas: " + nombre_fichero);
+  }
+  return cadenas;
+}
+
 std::map<identificadorEstado, Estado*> AutomataConPilaBuilder::construirEstados() {
   // ahora se supone que empezamos a leer estados
   std::map<identificadorEstado, Estado*> estados;
@@ -44,7 +69,7 @@ std::map<identificadorEstado, Estado*> AutomataConPilaBuilder::construirEstados(
   // 3. Extraemos los elementos de ESA línea individualmente con >>
   while (ss >> estado) {
       std::cout << "Estado procesado: " << estado << '\n';
-      if (estado[0] != 'q') throw std::runtime_error("Error: no se ha definido un estado con el formato adecuado: " + estado);
+      // if (estado[0] != 'q') throw std::runtime_error("Error: no se ha definido un estado con el formato adecuado: " + estado);
       estados.insert({estado, new Estado()});
   }
   return estados;
@@ -79,7 +104,7 @@ std::set<SimboloCadena> AutomataConPilaBuilder::construirAlfabeto(bool alfabeto_
 
       } else {
         std::cout << "Símbolo del alfabeto de la pila procesado: " << simbolo << '\n';
-        if (simbolo.size() != 1 && simbolo[0] >= 'A' && simbolo[0] <= 'Z') 
+        if (simbolo.size() != 1 && ((simbolo[0] >= 'A' && simbolo[0] <= 'Z') || (simbolo[0] >= '1' && simbolo[0] <= '9')))
           throw std::runtime_error("Error: no se ha definido un símbolo válido para el alfabeto: " + simbolo);
       }
       alfabeto.insert(simbolo[0]);
@@ -156,8 +181,10 @@ std::vector<identificadorEstado> AutomataConPilaBuilder::construirListaEstadosFi
   // 3. Extraemos los elementos de ESA línea individualmente con >>
   while (ss >> identificador_estado_final) {
     std::cout << "Estado final procesado: " << identificador_estado_final << '\n';
+    /**
     if (identificador_estado_final[0] != 'q')  
-    throw std::runtime_error("Error: no se ha definido un estado final con el formato adecuado: " + identificador_estado_final);
+      throw std::runtime_error("Error: no se ha definido un estado final con el formato adecuado: " + identificador_estado_final);
+    */
     identificadores_estados_finales.push_back(identificador_estado_final);
   }
   return identificadores_estados_finales;

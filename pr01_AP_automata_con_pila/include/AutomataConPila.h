@@ -28,12 +28,6 @@
  * @brief una Configuración es un struct auxiliar que nos va a ayudar a guardar para un estado X, que cadena le quedaba
           y que tenía escrito en la pila
  */
-struct ConfiguracionPendiente {
-  Estado* estado; // estado = el estado al que transitar desde estado_actual_
-  size_t  posicion_cadena;
-  Pila pila;
-};
-
 class AutomataConPila {
  public:
   /**
@@ -45,18 +39,34 @@ class AutomataConPila {
                   std::vector<Estado*> estados_finales,
                   SimboloPila simbolo_inicial_pila)
     : estados_(std::move(estados)),
+      estado_inicial_(estado_actual),
       estado_actual_(estado_actual),
       estados_finales_(estados_finales.begin(), estados_finales.end()),
-      pila_(simbolo_inicial_pila) {}
-
+      pila_(simbolo_inicial_pila),
+      simbolo_inicial_pila_(simbolo_inicial_pila) {}
+  
+  ~AutomataConPila() {
+    for (Estado* estado : estados_)
+      delete estado;
+  }
+      
   // método que comienza la ejecución de todo el Autómata
   bool leerCadena(const std::vector<SimboloCadena>& cadena);
 
+ protected:
+  struct ConfiguracionPendiente {
+    Estado* estado; // estado = el estado al que transitar desde estado_actual_
+    size_t  posicion_cadena;
+    Pila pila;
+  };
+
  private:
   std::vector<Estado*>  estados_;
+  Estado*               estado_inicial_;
   Estado*               estado_actual_;
   std::set<Estado*>     estados_finales_;
   Pila                  pila_;
+  SimboloPila           simbolo_inicial_pila_;
 };
 
 #endif

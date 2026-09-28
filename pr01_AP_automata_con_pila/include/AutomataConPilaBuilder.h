@@ -28,6 +28,7 @@
 #include <map>
 #include <string>
 #include <limits>
+#include <vector>
 
 class AutomataConPilaBuilder {
  public:
@@ -36,6 +37,10 @@ class AutomataConPilaBuilder {
 
   // construir desde archivo
   AutomataConPila construirDesdeArchivo(const std::string& nombre_fichero);
+
+  // Lee un fichero con una cadena de entrada por línea; "." representa epsilon.
+  std::vector<std::vector<SimboloCadena>> leerCadenasDesdeArchivo(
+      const std::string& nombre_fichero) const;
 
   // vamos a asumir que solo podemos construir desde archivos
   // construirEstados();
