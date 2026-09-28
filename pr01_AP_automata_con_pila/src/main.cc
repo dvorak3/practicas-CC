@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <ostream>
 #include <stdexcept>
 #include <string>
 
@@ -20,7 +21,7 @@ void imprimirAyuda(const char* programa) {
   std::cout << "Uso: " << programa
             << " -config <fichero> -trace <y|n> -in <fichero>\n"
             << "  -config <fichero>  Fichero con la definición del autómata\n"
-            << "  -trace <y|n>       Activar o desactivar la traza (pendiente de implementar)\n"
+            << "  -trace <y|n>       Activar o desactivar la traza por pantalla\n"
             << "  -in <fichero>      Fichero con una cadena de entrada por línea\n"
             << "Una línea con '.' representa la cadena vacía.\n";
 }
@@ -88,14 +89,12 @@ int main(int argc, char* argv[]) {
       throw std::runtime_error("El fichero de entrada no contiene ninguna cadena.");
     }
 
-    if (opciones.traza) {
-      std::cerr << "Aviso: -trace y está seleccionado, pero la traza aún no está implementada.\n";
-    }
+    std::ostream* salida_traza = opciones.traza ? &std::cout : nullptr;
 
     for (std::size_t i = 0; i < cadenas.size(); ++i) {
-      const bool aceptada = automata.leerCadena(cadenas[i]);
+      const bool aceptada = automata.leerCadena(cadenas[i], salida_traza);
       std::cout << "Cadena " << (i + 1) << ": "
-                << (aceptada ? "ACEPTADA" : "RECHAZADA") << '\n';
+                << (aceptada ? "ACEPTADA✓" : "RECHAZADA✕") << '\n';
     }
   } catch (const std::exception& error) {
     std::cerr << "Error: " << error.what() << '\n';

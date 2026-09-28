@@ -70,7 +70,7 @@ std::map<identificadorEstado, Estado*> AutomataConPilaBuilder::construirEstados(
   while (ss >> estado) {
       std::cout << "Estado procesado: " << estado << '\n';
       // if (estado[0] != 'q') throw std::runtime_error("Error: no se ha definido un estado con el formato adecuado: " + estado);
-      estados.insert({estado, new Estado()});
+      estados.insert({estado, new Estado(estado)});
   }
   return estados;
 }

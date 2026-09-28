@@ -17,6 +17,8 @@
 #ifndef PILA_H
 #define PILA_H
 
+#include <ostream>
+
 class Pila {
  public:
   // constructor - una pila requiere sí o sí un símbolo inicial
@@ -50,6 +52,15 @@ class Pila {
   // comprueba si la pila está vacía
   bool estaVacia() const {
     return pila_.empty();
+  }
+
+  friend std::ostream& operator<<(std::ostream& salida, const Pila& pila) {
+    salida << '[';
+    for (auto it = pila.pila_.rbegin(); it != pila.pila_.rend(); ++it) {
+      if (it != pila.pila_.rbegin()) salida << ' ';
+      salida << *it;
+    }
+    return salida << ']';
   }
   
  private:

@@ -24,7 +24,8 @@
 * @return si la cadena es aceptada o no 
 */ 
 /**
-bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena) {
+bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena,
+                                 std::ostream* salida_traza) {
   std::cout << pila_.cima() << std::endl;
   // 0. Necesitaremos un sitio dónde guardar todas nuestras posibles transiciones pendientes → las guardamos en una pila
   std::stack<Configuracion> configuraciones;
@@ -57,7 +58,8 @@ bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena) {
 * @param std::vector<SimboloCadena>  un vector de simbolos de la cadena a procesar
 * @return si la cadena es aceptada o no 
 */ 
-bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena) {
+bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena,
+                                 std::ostream* salida_traza) {
   // reiniciamos para una nueva cadena
   estado_actual_ = estado_inicial_;
   pila_ = Pila(simbolo_inicial_pila_);
@@ -66,19 +68,56 @@ bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena) {
   // aquí guardamos, para esta configuración X existe esta posible salida
   std::stack<ConfiguracionPendiente> configuraciones_pendientes_;
   size_t                             posicion_sobre_cadena{0};
+  size_t                             numero_paso{0};
 
   do {
     // ================= CONDICIÓN DE PARADA ====================
-    if (posicion_sobre_cadena == cadena.size() && estados_finales_.count(estado_actual_)) return 1;
+    if (posicion_sobre_cadena == cadena.size() && estados_finales_.count(estado_actual_)) {
+      if (salida_traza != nullptr) {
+        *salida_traza << "Paso " << numero_paso << ": estado " << estado_actual_->identificador()
+                      << ", entrada restante: ., pila (cima primero): " << pila_
+                      << " -> ACEPTADA\n";
+      }
+      return true;
+    }
     // ==========================================================
 
     // metemos las transiciones iniciales VACIAS luego las NO VACIAS
     std::vector<SimboloCadena> simbolos_a_consumir{SIMBOLO_CADENA_VACIO};
     if(posicion_sobre_cadena != cadena.size()) simbolos_a_consumir.push_back(cadena[posicion_sobre_cadena]); 
 
+    if (salida_traza != nullptr) {
+      const std::string entrada_restante(cadena.begin() + posicion_sobre_cadena, cadena.end());
+      *salida_traza << "Paso " << numero_paso << ": estado " << estado_actual_->identificador()
+                    << ", entrada restante: "
+                    << (entrada_restante.empty() ? "." : entrada_restante)
+                    << ", pila (cima primero): " << pila_ << '\n'
+                    << "  Transiciones posibles:\n";
+    }
+
+    bool hay_transiciones = false;
+
     for (size_t j{0}; j < simbolos_a_consumir.size(); ++j) {
       std::vector<ResultadoTransicion> posibles_transiciones;
       if (!pila_.estaVacia()) posibles_transiciones = estado_actual_->obtenerTransiciones(EntradaTransicion{simbolos_a_consumir[j], pila_.cima()});
+      for (const auto& transicion : posibles_transiciones) {
+        hay_transiciones = true;
+        if (salida_traza != nullptr) {
+          *salida_traza << "    δ(" << estado_actual_->identificador() << ", "
+                        << (simbolos_a_consumir[j] == SIMBOLO_CADENA_VACIO
+                                ? "." : std::string(1, simbolos_a_consumir[j]))
+                        << ", " << pila_.cima() << ") -> ("
+                        << transicion.proximo_estado_->identificador() << ", ";
+          if (transicion.cadena_a_escribir_en_pila_.empty()) {
+            *salida_traza << '.';
+          } else {
+            for (SimboloPila simbolo : transicion.cadena_a_escribir_en_pila_) {
+              *salida_traza << simbolo;
+            }
+          }
+          *salida_traza << ")\n";
+        }
+      }
       for (size_t i{posibles_transiciones.size()}; i > 0; --i) {
         Estado* proximo_estado =  posibles_transiciones[i - 1].proximo_estado_;
         Pila    pila_ya_escrita = pila_;
@@ -89,8 +128,15 @@ bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena) {
       }
     }
 
+    if (salida_traza != nullptr && !hay_transiciones) {
+      *salida_traza << "    (ninguna)\n";
+    }
+
     // Si no hay sucesoras ni alternativas, la ejecución ha fallado.
-    if (configuraciones_pendientes_.empty()) return false;
+    if (configuraciones_pendientes_.empty()) {
+      if (salida_traza != nullptr) *salida_traza << "  Rama sin continuación -> RECHAZADA\n";
+      return false;
+    }
 
     // ahora transicionamos a la transición en lo alto de la cima
     ConfiguracionPendiente nueva_configuracion = configuraciones_pendientes_.top();
@@ -99,6 +145,7 @@ bool AutomataConPila::leerCadena(const std::vector<SimboloCadena>& cadena) {
     pila_                 = nueva_configuracion.pila;
 
     configuraciones_pendientes_.pop();
+    ++numero_paso;
 
 
   } while(true);

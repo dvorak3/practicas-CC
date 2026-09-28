@@ -23,9 +23,18 @@
 #include <vector>
 #include <set>
 #include <map>
+#include <string>
+#include <utility>
 
 class Estado {
  public:
+  explicit Estado(identificadorEstado identificador)
+      : identificador_(std::move(identificador)) {}
+
+  const identificadorEstado& identificador() const {
+    return identificador_;
+  }
+
   //ResultadoTransicion obtenerTransiciones(Transicion);
 
   // método que añade una transición con origen en el Estado actual
@@ -37,6 +46,7 @@ class Estado {
   std::vector<ResultadoTransicion> obtenerTransiciones(const EntradaTransicion& transicion);
 
  private:
+  identificadorEstado identificador_;
   std::multimap<EntradaTransicion, ResultadoTransicion> transiciones_;
 };
 

@@ -21,6 +21,7 @@
 #include "Pila.h"
 
 #include <set>
+#include <ostream>
 #include <utility>
 #include <vector>
 
@@ -51,7 +52,8 @@ class AutomataConPila {
   }
       
   // método que comienza la ejecución de todo el Autómata
-  bool leerCadena(const std::vector<SimboloCadena>& cadena);
+  bool leerCadena(const std::vector<SimboloCadena>& cadena,
+                  std::ostream* salida_traza = nullptr);
 
  protected:
   struct ConfiguracionPendiente {
