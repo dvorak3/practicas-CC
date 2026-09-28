@@ -30,17 +30,15 @@ make clean && make
 Desde `build`, ejecuta el programa indicando el fichero de definición del autómata, si se activa la traza y el fichero de cadenas:
 
 ```sh
-./automata_pila -config APf/APf-1.txt -trace n -in APf/cadenas.txt
+./automata_pila -config APf/APf-1.txt -in APf/cadenas.txt
 ```
 
 Opciones disponibles:
 
 - `-config <fichero>`: definición del autómata; obligatorio.
-- `-trace <y|n>`: activa o desactiva la traza por pantalla; obligatorio.
+- `-trace <y|n>`: activa o desactiva la traza por pantalla; opcional, por defecto `n`.
 - `-in <fichero>`: fichero de cadenas de entrada, con una cadena por línea; obligatorio en esta versión.
 - `-h` o `--help`: muestra la ayuda.
-
-`-out` todavía no está implementada. Cuando se activa `-trace y`, la traza se muestra por pantalla.
 
 ### Fichero de cadenas
 

@@ -19,9 +19,9 @@ struct Opciones {
 
 void imprimirAyuda(const char* programa) {
   std::cout << "Uso: " << programa
-            << " -config <fichero> -trace <y|n> -in <fichero>\n"
+            << " -config <fichero> [-trace <y|n>] -in <fichero>\n"
             << "  -config <fichero>  Fichero con la definición del autómata\n"
-            << "  -trace <y|n>       Activar o desactivar la traza por pantalla\n"
+            << "  -trace <y|n>       Activar o desactivar la traza por pantalla (por defecto: n)\n"
             << "  -in <fichero>      Fichero con una cadena de entrada por línea\n"
             << "Una línea con '.' representa la cadena vacía.\n";
 }
@@ -69,7 +69,6 @@ Opciones analizarArgumentos(int argc, char* argv[]) {
   }
 
   if (!opciones.config_indicada) throw std::runtime_error("Falta la opción obligatoria -config.");
-  if (!opciones.traza_indicada) throw std::runtime_error("Falta la opción obligatoria -trace.");
   if (!opciones.entrada_indicada) throw std::runtime_error("Falta la opción -in en esta versión.");
   return opciones;
 }
