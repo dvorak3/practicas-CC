@@ -105,12 +105,12 @@ reutilizar las validaciones sin duplicar la construcción.
    - Configuración: `tests/configuracion/MT_2_contar.txt`
    - Entradas de prueba: `tests/entradas/contar.txt`
    - Grafo: `doc/grafos/MT_2_contar.svg`
-   - La cinta 2 cuenta las `b` y la cinta 3 las `a`. La cinta 1 se sobrescribe
-     con las `b` en unario, un blanco separador y las `a` en unario; los
-     recuentos vacíos se representan con `0`. La cabeza termina en el comienzo
-     del resultado. El SVG muestra todos los estados y las aristas del grafo;
-     cada etiqueta `Tnn` identifica una transición cuya definición completa
-     aparece en la clave incluida bajo el diagrama.
+   - Usa dos cintas. En una pasada copia la entrada a la cinta 2 y borra la
+     cinta 1; después recorre la copia para escribir en la cinta 1 el recuento
+     de `b`, un blanco separador y el recuento de `a`. Los recuentos vacíos se
+     representan con `0`. Al terminar, la cabeza queda al principio del
+     resultado. El grafo muestra sus 12 estados y las 30 transiciones; las
+     etiquetas `Tnn` remiten a la clave completa bajo el diagrama.
 
 El resultado del ejemplo `abbabaabb` es `11111.1111`; para `aa` es `0.11` y
 para `bb` es `11.0`.
