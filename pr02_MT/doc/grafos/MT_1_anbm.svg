@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="500" viewBox="0 0 1080 500">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#263238"/>
+    </marker>
+    <style>
+      text { font-family: sans-serif; fill: #17212b; }
+      .state { fill: #e8f1fb; stroke: #345b7e; stroke-width: 2; }
+      .final { fill: #e7f6e7; stroke: #287a3c; stroke-width: 2; }
+      .edge { fill: none; stroke: #263238; stroke-width: 1.8; marker-end: url(#arrow); }
+      .label { font-size: 14px; paint-order: stroke; stroke: white; stroke-width: 5px; stroke-linejoin: round; }
+      .name { font-size: 16px; text-anchor: middle; dominant-baseline: middle; }
+      .title { font-size: 22px; font-weight: bold; }
+    </style>
+  </defs>
+  <text x="36" y="36" class="title">MT 1 — L = { aⁿbᵐ | m ≥ n, n &gt; 0 }</text>
+  <circle cx="70" cy="245" r="8" fill="#263238"/>
+  <path class="edge" d="M78 245 L142 245"/>
+  <ellipse class="state" cx="205" cy="245" rx="62" ry="32"/>
+  <text class="name" x="205" y="245">q0</text>
+  <ellipse class="state" cx="385" cy="245" rx="75" ry="32"/>
+  <text class="name" x="385" y="245">qBuscaB</text>
+  <ellipse class="state" cx="565" cy="245" rx="66" ry="32"/>
+  <text class="name" x="565" y="245">qVuelta</text>
+  <ellipse class="state" cx="740" cy="245" rx="72" ry="32"/>
+  <text class="name" x="740" y="245">qBuscaA</text>
+  <ellipse class="state" cx="900" cy="245" rx="78" ry="32"/>
+  <text class="name" x="900" y="245">qComprueba</text>
+  <ellipse class="final" cx="1030" cy="245" rx="34" ry="29"/>
+  <ellipse class="final" cx="1030" cy="245" rx="29" ry="24"/>
+  <text class="name" x="1030" y="245">qf</text>
+
+  <path class="edge" d="M267 245 L310 245"/>
+  <text class="label" x="280" y="226">a/X, R</text>
+  <path class="edge" d="M385 213 C385 156 385 156 385 213"/>
+  <text class="label" x="394" y="168">a/a, X/X, Y/Y; R</text>
+  <path class="edge" d="M450 245 L499 245"/>
+  <text class="label" x="455" y="225">b/Y, L</text>
+  <path class="edge" d="M565 213 C565 112 565 112 565 213"/>
+  <text class="label" x="576" y="132">a/b/X/Y, L</text>
+  <path class="edge" d="M631 245 L668 245"/>
+  <text class="label" x="631" y="225">./., R</text>
+  <path class="edge" d="M740 213 C740 77 740 77 740 213"/>
+  <text class="label" x="750" y="96">X/X, R</text>
+  <path class="edge" d="M812 245 L821 245"/>
+  <text class="label" x="785" y="225">a/X, R</text>
+  <path class="edge" d="M812 258 C843 300 854 300 872 273"/>
+  <text class="label" x="826" y="320">b/b, Y/Y; S</text>
+  <path class="edge" d="M900 213 C900 50 900 50 900 213"/>
+  <text class="label" x="910" y="69">b/b, Y/Y; R</text>
+  <path class="edge" d="M978 245 L993 245"/>
+  <text class="label" x="973" y="225">./., S</text>
+  <text x="36" y="455" font-size="14">Etiqueta: símbolo leído / símbolo escrito, movimiento.</text>
+</svg>
