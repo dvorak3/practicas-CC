@@ -108,8 +108,9 @@ reutilizar las validaciones sin duplicar la construcción.
    - La cinta 2 cuenta las `b` y la cinta 3 las `a`. La cinta 1 se sobrescribe
      con las `b` en unario, un blanco separador y las `a` en unario; los
      recuentos vacíos se representan con `0`. La cabeza termina en el comienzo
-     del resultado. El fichero SVG muestra el grafo de fases y agrupa las
-     transiciones repetitivas por símbolo.
+     del resultado. El SVG muestra todos los estados y las aristas del grafo;
+     cada etiqueta `Tnn` identifica una transición cuya definición completa
+     aparece en la clave incluida bajo el diagrama.
 
 El resultado del ejemplo `abbabaabb` es `11111.1111`; para `aa` es `0.11` y
 para `bb` es `11.0`.
