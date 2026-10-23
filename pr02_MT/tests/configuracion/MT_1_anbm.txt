@@ -1,0 +1,28 @@
+# Reconoce L = { a^n b^m | m >= n, n > 0 }.
+q0 qBuscaB qVuelta qBuscaA qComprueba qf
+a b
+a b X Y .
+q0
+.
+qf
+1
+# Marca una a y busca una b no emparejada.
+q0 a qBuscaB X R
+qBuscaB a qBuscaB a R
+qBuscaB X qBuscaB X R
+qBuscaB Y qBuscaB Y R
+qBuscaB b qVuelta Y L
+# Vuelve al principio de la cinta.
+qVuelta a qVuelta a L
+qVuelta b qVuelta b L
+qVuelta X qVuelta X L
+qVuelta Y qVuelta Y L
+qVuelta . qBuscaA . R
+# Busca otra a; al llegar a las b, comprueba el sufijo.
+qBuscaA X qBuscaA X R
+qBuscaA a qBuscaB X R
+qBuscaA b qComprueba b S
+qBuscaA Y qComprueba Y S
+qComprueba b qComprueba b R
+qComprueba Y qComprueba Y R
+qComprueba . qf . S

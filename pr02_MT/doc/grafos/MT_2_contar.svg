@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1060" viewBox="0 0 1500 1060">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#263238"/>
+    </marker>
+    <style>
+      text { font-family: sans-serif; fill: #17212b; }
+      .state { fill: #e8f1fb; stroke: #345b7e; stroke-width: 2; }
+      .work { fill: #fff3d6; stroke: #9b6b12; stroke-width: 2; }
+      .final { fill: #e7f6e7; stroke: #287a3c; stroke-width: 2; }
+      .edge { fill: none; stroke: #263238; stroke-width: 1.7; marker-end: url(#arrow); }
+      .label { font-size: 12px; paint-order: stroke; stroke: white; stroke-width: 5px; stroke-linejoin: round; }
+      .name { font-size: 13px; text-anchor: middle; dominant-baseline: middle; }
+      .title { font-size: 22px; font-weight: bold; }
+      .subtitle { font-size: 14px; }
+    </style>
+  </defs>
+  <text x="30" y="35" class="title">MT 2 — salida: bⁿ · aᵐ en unario</text>
+  <text x="30" y="58" class="subtitle">Grafo de fases: las etiquetas agrupan transiciones repetitivas de la definición de tres cintas.</text>
+
+  <ellipse class="state" cx="100" cy="150" rx="58" ry="28"/><text class="name" x="100" y="150">qScan</text>
+  <ellipse class="state" cx="250" cy="150" rx="58" ry="28"/><text class="name" x="250" y="150">qReset</text>
+  <ellipse class="state" cx="400" cy="150" rx="58" ry="28"/><text class="name" x="400" y="150">qOrigin</text>
+  <ellipse class="work" cx="560" cy="110" rx="58" ry="28"/><text class="name" x="560" y="110">qCopyB</text>
+  <ellipse class="work" cx="560" cy="210" rx="58" ry="28"/><text class="name" x="560" y="210">qSepB0</text>
+  <ellipse class="state" cx="715" cy="110" rx="58" ry="28"/><text class="name" x="715" y="110">qStartA1</text>
+  <ellipse class="state" cx="715" cy="210" rx="58" ry="28"/><text class="name" x="715" y="210">qStartA0</text>
+  <ellipse class="work" cx="870" cy="110" rx="58" ry="28"/><text class="name" x="870" y="110">qCopyA1</text>
+  <ellipse class="work" cx="870" cy="210" rx="58" ry="28"/><text class="name" x="870" y="210">qCopyA0</text>
+
+  <ellipse class="state" cx="1040" cy="95" rx="75" ry="25"/><text class="name" x="1040" y="95">qRewindA1B1</text>
+  <ellipse class="state" cx="1040" cy="155" rx="75" ry="25"/><text class="name" x="1040" y="155">qRewindA1B0</text>
+  <ellipse class="state" cx="1040" cy="230" rx="75" ry="25"/><text class="name" x="1040" y="230">qRewindA0B1</text>
+  <ellipse class="state" cx="1040" cy="290" rx="75" ry="25"/><text class="name" x="1040" y="290">qRewindA0B0</text>
+  <ellipse class="state" cx="1220" cy="230" rx="84" ry="25"/><text class="name" x="1220" y="230">qRewindA0B1Digit</text>
+  <ellipse class="state" cx="1220" cy="290" rx="84" ry="25"/><text class="name" x="1220" y="290">qRewindA0B0Digit</text>
+  <ellipse class="state" cx="1220" cy="390" rx="72" ry="25"/><text class="name" x="1220" y="390">qSepRewindB1</text>
+  <ellipse class="state" cx="1220" cy="450" rx="72" ry="25"/><text class="name" x="1220" y="450">qSepRewindB0</text>
+  <ellipse class="state" cx="1370" cy="95" rx="62" ry="25"/><text class="name" x="1370" y="95">qRewindB1</text>
+  <ellipse class="state" cx="1370" cy="290" rx="62" ry="25"/><text class="name" x="1370" y="290">qRewindB0</text>
+  <ellipse class="state" cx="1370" cy="450" rx="70" ry="25"/><text class="name" x="1370" y="450">qRewindB0Start</text>
+  <ellipse class="final" cx="1450" cy="180" rx="34" ry="27"/><ellipse class="final" cx="1450" cy="180" rx="29" ry="22"/><text class="name" x="1450" y="180">qf</text>
+
+  <path class="edge" d="M158 150 L192 150"/><text class="label" x="160" y="137">fin: .</text>
+  <path class="edge" d="M100 122 C100 80 100 80 100 122"/><text class="label" x="108" y="91">a / b: acumula</text>
+  <path class="edge" d="M308 150 L342 150"/><text class="label" x="309" y="137">cabezas al origen</text>
+  <path class="edge" d="M450 140 L505 117"/><text class="label" x="461" y="111">b &gt; 0</text>
+  <path class="edge" d="M450 160 L505 202"/><text class="label" x="463" y="196">b = 0: escribe 0</text>
+  <path class="edge" d="M618 110 L657 110"/><text class="label" x="617" y="97">fin de b</text>
+  <path class="edge" d="M560 82 C560 46 560 46 560 82"/><text class="label" x="568" y="57">copia 1</text>
+  <path class="edge" d="M618 210 L657 210"/><text class="label" x="617" y="197">separador</text>
+  <path class="edge" d="M773 110 L812 110"/><text class="label" x="774" y="97">a &gt; 0</text>
+  <path class="edge" d="M773 210 L812 210"/><text class="label" x="774" y="197">a &gt; 0</text>
+  <path class="edge" d="M757 133 C815 165 906 220 965 230"/><text class="label" x="843" y="185">a = 0</text>
+  <path class="edge" d="M773 230 C835 259 908 286 965 290"/><text class="label" x="851" y="277">a = 0</text>
+  <path class="edge" d="M870 82 C870 46 870 46 870 82"/><text class="label" x="878" y="57">copia 1</text>
+  <path class="edge" d="M928 102 C965 96 971 95 989 95"/><text class="label" x="948" y="83">fin, b&gt;0</text>
+  <path class="edge" d="M928 118 C966 143 974 151 989 155"/><text class="label" x="948" y="148">fin, b=0</text>
+  <path class="edge" d="M928 198 C967 180 975 164 989 155"/><text class="label" x="943" y="184">fin, b=0</text>
+  <path class="edge" d="M1115 95 L1308 95"/><text class="label" x="1172" y="83">separador</text>
+  <path class="edge" d="M1115 155 C1200 170 1260 245 1308 282"/><text class="label" x="1174" y="193">separador</text>
+  <path class="edge" d="M1115 230 L1136 230"/><text class="label" x="1114" y="218">L</text>
+  <path class="edge" d="M1115 290 L1136 290"/><text class="label" x="1114" y="278">L</text>
+  <path class="edge" d="M1220 255 L1220 365"/><text class="label" x="1228" y="326">lee 0, L</text>
+  <path class="edge" d="M1220 315 L1220 425"/><text class="label" x="1228" y="386">lee 0, L</text>
+  <path class="edge" d="M1220 415 C1260 320 1318 170 1345 117"/><text class="label" x="1262" y="291">cruza separador</text>
+  <path class="edge" d="M1292 450 C1320 420 1318 340 1308 305"/><text class="label" x="1300" y="386">cruza separador</text>
+  <path class="edge" d="M1370 265 L1370 315"/><text class="label" x="1378" y="298">0: L</text>
+  <path class="edge" d="M1370 415 L1370 425"/>
+  <path class="edge" d="M1010 72 C990 40 1090 40 1070 72"/><text class="label" x="1024" y="49">lee 1, L</text>
+  <path class="edge" d="M1010 132 C990 100 1090 100 1070 132"/><text class="label" x="1024" y="109">lee 1, L</text>
+  <path class="edge" d="M1370 70 C1370 35 1370 35 1370 70"/><text class="label" x="1378" y="47">lee 1, L</text>
+  <path class="edge" d="M1432 95 C1460 105 1468 142 1456 153"/><text class="label" x="1440" y="124">blanco: R</text>
+  <path class="edge" d="M1440 450 C1485 390 1482 265 1458 207"/><text class="label" x="1452" y="350">blanco: R</text>
+  <text x="30" y="1010" font-size="13">Los sufijos 1/0 distinguen recuentos de b positivos o nulos mientras se rebobina hacia la primera celda.</text>
+  <text x="30" y="1033" font-size="13">En cada transición se leen/escriben tres símbolos y se mueve cada cabeza de forma independiente.</text>
+</svg>

@@ -1,0 +1,95 @@
+# Entrada a,b; salida en la cinta 1: b^n en unario, blanco, a^m en unario.
+# La cinta 2 acumula las b y la cinta 3 acumula las a.
+qScan qReset qOrigin qCopyB qSepB0 qStartA1 qStartA0 qCopyA1 qCopyA0 qRewindA0B1 qRewindA0B1Digit qRewindA0B0 qRewindA0B0Digit qSepRewindB1 qSepRewindB0 qRewindA1B1 qRewindA1B0 qRewindB1 qRewindB0 qRewindB0Start qf
+a b
+a b 1 0 .
+qScan
+.
+qf
+3
+# Recorre la entrada y añade un 1 a la cinta de trabajo correspondiente.
+qScan a . . qScan a . 1 R S R
+qScan b . . qScan b 1 . R R S
+qScan . . . qReset . . . L L L
+# Retrocede las tres cabezas hasta el blanco anterior a sus secuencias.
+qReset . . . qOrigin . . . R R R
+qReset a 1 1 qReset a 1 1 L L L
+qReset a 1 . qReset a 1 . L L S
+qReset a . 1 qReset a . 1 L S L
+qReset a . . qReset a . . L S S
+qReset b 1 1 qReset b 1 1 L L L
+qReset b 1 . qReset b 1 . L L S
+qReset b . 1 qReset b . 1 L S L
+qReset b . . qReset b . . L S S
+qReset . 1 1 qReset . 1 1 S L L
+qReset . 1 . qReset . 1 . S L S
+qReset . . 1 qReset . . 1 S S L
+# Empieza la salida; si no hay b, codifica ese recuento como 0.
+qOrigin a 1 1 qCopyB 1 1 1 R R S
+qOrigin a 1 . qCopyB 1 1 . R R S
+qOrigin b 1 1 qCopyB 1 1 1 R R S
+qOrigin b 1 . qCopyB 1 1 . R R S
+qOrigin . 1 1 qCopyB 1 1 1 R R S
+qOrigin . 1 . qCopyB 1 1 . R R S
+qOrigin a . 1 qSepB0 0 . 1 R S S
+qOrigin a . . qSepB0 0 . . R S S
+qOrigin b . 1 qSepB0 0 . 1 R S S
+qOrigin b . . qSepB0 0 . . R S S
+qOrigin . . 1 qSepB0 0 . 1 R S S
+qOrigin . . . qSepB0 0 . . R S S
+# Copia las b acumuladas y escribe el blanco separador.
+qCopyB a 1 1 qCopyB 1 1 1 R R S
+qCopyB a 1 . qCopyB 1 1 . R R S
+qCopyB b 1 1 qCopyB 1 1 1 R R S
+qCopyB b 1 . qCopyB 1 1 . R R S
+qCopyB . 1 1 qCopyB 1 1 1 R R S
+qCopyB . 1 . qCopyB 1 1 . R R S
+qCopyB a . 1 qStartA1 . . 1 R S S
+qCopyB a . . qStartA1 . . . R S S
+qCopyB b . 1 qStartA1 . . 1 R S S
+qCopyB b . . qStartA1 . . . R S S
+qCopyB . . 1 qStartA1 . . 1 R S S
+qCopyB . . . qStartA1 . . . R S S
+qSepB0 a . 1 qStartA0 . . 1 R S S
+qSepB0 a . . qStartA0 . . . R S S
+qSepB0 b . 1 qStartA0 . . 1 R S S
+qSepB0 b . . qStartA0 . . . R S S
+qSepB0 . . 1 qStartA0 . . 1 R S S
+qSepB0 . . . qStartA0 . . . R S S
+# Copia las a, codificando como 0 el recuento vacio.
+qStartA1 a . 1 qCopyA1 1 . 1 R S R
+qStartA1 b . 1 qCopyA1 1 . 1 R S R
+qStartA1 . . 1 qCopyA1 1 . 1 R S R
+qStartA1 a . . qRewindA0B1 0 . . R S S
+qStartA1 b . . qRewindA0B1 0 . . R S S
+qStartA1 . . . qRewindA0B1 0 . . R S S
+qStartA0 a . 1 qCopyA0 1 . 1 R S R
+qStartA0 b . 1 qCopyA0 1 . 1 R S R
+qStartA0 . . 1 qCopyA0 1 . 1 R S R
+qStartA0 a . . qRewindA0B0 0 . . R S S
+qStartA0 b . . qRewindA0B0 0 . . R S S
+qStartA0 . . . qRewindA0B0 0 . . R S S
+qCopyA1 a . 1 qCopyA1 1 . 1 R S R
+qCopyA1 b . 1 qCopyA1 1 . 1 R S R
+qCopyA1 . . 1 qCopyA1 1 . 1 R S R
+qCopyA1 . . . qRewindA1B1 . . . L S S
+qCopyA0 a . 1 qCopyA0 1 . 1 R S R
+qCopyA0 b . 1 qCopyA0 1 . 1 R S R
+qCopyA0 . . 1 qCopyA0 1 . 1 R S R
+qCopyA0 . . . qRewindA1B0 . . . L S S
+# Retrocede a traves del bloque a (positivo o codificado como 0).
+qRewindA0B1 . . . qRewindA0B1Digit . . . L S S
+qRewindA0B1Digit 0 . . qSepRewindB1 0 . . L S S
+qRewindA0B0 . . . qRewindA0B0Digit . . . L S S
+qRewindA0B0Digit 0 . . qSepRewindB0 0 . . L S S
+qRewindA1B1 1 . . qRewindA1B1 1 . . L S S
+qRewindA1B1 . . . qRewindB1 . . . L S S
+qRewindA1B0 1 . . qRewindA1B0 1 . . L S S
+qRewindA1B0 . . . qRewindB0 . . . L S S
+# Cruza el separador y vuelve al comienzo del primer bloque.
+qSepRewindB1 . . . qRewindB1 . . . L S S
+qSepRewindB0 . . . qRewindB0 . . . L S S
+qRewindB1 1 . . qRewindB1 1 . . L S S
+qRewindB1 . . . qf . . . R S S
+qRewindB0 0 . . qRewindB0Start 0 . . L S S
+qRewindB0Start . . . qf . . . R S S
