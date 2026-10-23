@@ -1,77 +1,376 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1060" viewBox="0 0 1500 1060">
-  <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
-      <path d="M0,0 L10,4 L0,8 Z" fill="#263238"/>
-    </marker>
-    <style>
-      text { font-family: sans-serif; fill: #17212b; }
-      .state { fill: #e8f1fb; stroke: #345b7e; stroke-width: 2; }
-      .work { fill: #fff3d6; stroke: #9b6b12; stroke-width: 2; }
-      .final { fill: #e7f6e7; stroke: #287a3c; stroke-width: 2; }
-      .edge { fill: none; stroke: #263238; stroke-width: 1.7; marker-end: url(#arrow); }
-      .label { font-size: 12px; paint-order: stroke; stroke: white; stroke-width: 5px; stroke-linejoin: round; }
-      .name { font-size: 13px; text-anchor: middle; dominant-baseline: middle; }
-      .title { font-size: 22px; font-weight: bold; }
-      .subtitle { font-size: 14px; }
-    </style>
-  </defs>
-  <text x="30" y="35" class="title">MT 2 — salida: bⁿ · aᵐ en unario</text>
-  <text x="30" y="58" class="subtitle">Grafo de fases: las etiquetas agrupan transiciones repetitivas de la definición de tres cintas.</text>
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2103pt" height="1689.60pt" viewBox="0.00 0.00 2103.32 1689.60">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(28.8 944.8)">
+<title>MT2</title>
+<polygon fill="white" stroke="transparent" points="-28.8,28.8 -28.8,-944.8 2074.52,-944.8 2074.52,28.8 -28.8,28.8" />
+<text text-anchor="middle" x="320.5" y="-896" font-family="sans-serif" font-size="20.00">MT 2 — recuento de b y a en unario</text>
+<text text-anchor="middle" x="320.5" y="-874" font-family="sans-serif" font-size="20.00">Grafo completo: 21 estados y 79 transiciones (máquina de 3 cintas)</text>
 
-  <ellipse class="state" cx="100" cy="150" rx="58" ry="28"/><text class="name" x="100" y="150">qScan</text>
-  <ellipse class="state" cx="250" cy="150" rx="58" ry="28"/><text class="name" x="250" y="150">qReset</text>
-  <ellipse class="state" cx="400" cy="150" rx="58" ry="28"/><text class="name" x="400" y="150">qOrigin</text>
-  <ellipse class="work" cx="560" cy="110" rx="58" ry="28"/><text class="name" x="560" y="110">qCopyB</text>
-  <ellipse class="work" cx="560" cy="210" rx="58" ry="28"/><text class="name" x="560" y="210">qSepB0</text>
-  <ellipse class="state" cx="715" cy="110" rx="58" ry="28"/><text class="name" x="715" y="110">qStartA1</text>
-  <ellipse class="state" cx="715" cy="210" rx="58" ry="28"/><text class="name" x="715" y="210">qStartA0</text>
-  <ellipse class="work" cx="870" cy="110" rx="58" ry="28"/><text class="name" x="870" y="110">qCopyA1</text>
-  <ellipse class="work" cx="870" cy="210" rx="58" ry="28"/><text class="name" x="870" y="210">qCopyA0</text>
+<g id="node1" class="node">
+<title>start</title>
+<ellipse fill="#e8f1fb" stroke="#263238" stroke-width="1.5" cx="4.32" cy="-551" rx="4.32" ry="4.32" />
+</g>
 
-  <ellipse class="state" cx="1040" cy="95" rx="75" ry="25"/><text class="name" x="1040" y="95">qRewindA1B1</text>
-  <ellipse class="state" cx="1040" cy="155" rx="75" ry="25"/><text class="name" x="1040" y="155">qRewindA1B0</text>
-  <ellipse class="state" cx="1040" cy="230" rx="75" ry="25"/><text class="name" x="1040" y="230">qRewindA0B1</text>
-  <ellipse class="state" cx="1040" cy="290" rx="75" ry="25"/><text class="name" x="1040" y="290">qRewindA0B0</text>
-  <ellipse class="state" cx="1220" cy="230" rx="84" ry="25"/><text class="name" x="1220" y="230">qRewindA0B1Digit</text>
-  <ellipse class="state" cx="1220" cy="290" rx="84" ry="25"/><text class="name" x="1220" y="290">qRewindA0B0Digit</text>
-  <ellipse class="state" cx="1220" cy="390" rx="72" ry="25"/><text class="name" x="1220" y="390">qSepRewindB1</text>
-  <ellipse class="state" cx="1220" cy="450" rx="72" ry="25"/><text class="name" x="1220" y="450">qSepRewindB0</text>
-  <ellipse class="state" cx="1370" cy="95" rx="62" ry="25"/><text class="name" x="1370" y="95">qRewindB1</text>
-  <ellipse class="state" cx="1370" cy="290" rx="62" ry="25"/><text class="name" x="1370" y="290">qRewindB0</text>
-  <ellipse class="state" cx="1370" cy="450" rx="70" ry="25"/><text class="name" x="1370" y="450">qRewindB0Start</text>
-  <ellipse class="final" cx="1450" cy="180" rx="34" ry="27"/><ellipse class="final" cx="1450" cy="180" rx="29" ry="22"/><text class="name" x="1450" y="180">qf</text>
+<g id="node2" class="node">
+<title>qScan</title>
+<ellipse fill="#ffe6a8" stroke="#a66a00" stroke-width="2.2" cx="140.64" cy="-551" rx="41" ry="18" />
+<text text-anchor="middle" x="140.64" y="-547.9" font-family="sans-serif" font-size="12.00">qScan</text>
+</g>
 
-  <path class="edge" d="M158 150 L192 150"/><text class="label" x="160" y="137">fin: .</text>
-  <path class="edge" d="M100 122 C100 80 100 80 100 122"/><text class="label" x="108" y="91">a / b: acumula</text>
-  <path class="edge" d="M308 150 L342 150"/><text class="label" x="309" y="137">cabezas al origen</text>
-  <path class="edge" d="M450 140 L505 117"/><text class="label" x="461" y="111">b &gt; 0</text>
-  <path class="edge" d="M450 160 L505 202"/><text class="label" x="463" y="196">b = 0: escribe 0</text>
-  <path class="edge" d="M618 110 L657 110"/><text class="label" x="617" y="97">fin de b</text>
-  <path class="edge" d="M560 82 C560 46 560 46 560 82"/><text class="label" x="568" y="57">copia 1</text>
-  <path class="edge" d="M618 210 L657 210"/><text class="label" x="617" y="197">separador</text>
-  <path class="edge" d="M773 110 L812 110"/><text class="label" x="774" y="97">a &gt; 0</text>
-  <path class="edge" d="M773 210 L812 210"/><text class="label" x="774" y="197">a &gt; 0</text>
-  <path class="edge" d="M757 133 C815 165 906 220 965 230"/><text class="label" x="843" y="185">a = 0</text>
-  <path class="edge" d="M773 230 C835 259 908 286 965 290"/><text class="label" x="851" y="277">a = 0</text>
-  <path class="edge" d="M870 82 C870 46 870 46 870 82"/><text class="label" x="878" y="57">copia 1</text>
-  <path class="edge" d="M928 102 C965 96 971 95 989 95"/><text class="label" x="948" y="83">fin, b&gt;0</text>
-  <path class="edge" d="M928 118 C966 143 974 151 989 155"/><text class="label" x="948" y="148">fin, b=0</text>
-  <path class="edge" d="M928 198 C967 180 975 164 989 155"/><text class="label" x="943" y="184">fin, b=0</text>
-  <path class="edge" d="M1115 95 L1308 95"/><text class="label" x="1172" y="83">separador</text>
-  <path class="edge" d="M1115 155 C1200 170 1260 245 1308 282"/><text class="label" x="1174" y="193">separador</text>
-  <path class="edge" d="M1115 230 L1136 230"/><text class="label" x="1114" y="218">L</text>
-  <path class="edge" d="M1115 290 L1136 290"/><text class="label" x="1114" y="278">L</text>
-  <path class="edge" d="M1220 255 L1220 365"/><text class="label" x="1228" y="326">lee 0, L</text>
-  <path class="edge" d="M1220 315 L1220 425"/><text class="label" x="1228" y="386">lee 0, L</text>
-  <path class="edge" d="M1220 415 C1260 320 1318 170 1345 117"/><text class="label" x="1262" y="291">cruza separador</text>
-  <path class="edge" d="M1292 450 C1320 420 1318 340 1308 305"/><text class="label" x="1300" y="386">cruza separador</text>
-  <path class="edge" d="M1370 265 L1370 315"/><text class="label" x="1378" y="298">0: L</text>
-  <path class="edge" d="M1370 415 L1370 425"/>
-  <path class="edge" d="M1010 72 C990 40 1090 40 1070 72"/><text class="label" x="1024" y="49">lee 1, L</text>
-  <path class="edge" d="M1010 132 C990 100 1090 100 1070 132"/><text class="label" x="1024" y="109">lee 1, L</text>
-  <path class="edge" d="M1370 70 C1370 35 1370 35 1370 70"/><text class="label" x="1378" y="47">lee 1, L</text>
-  <path class="edge" d="M1432 95 C1460 105 1468 142 1456 153"/><text class="label" x="1440" y="124">blanco: R</text>
-  <path class="edge" d="M1440 450 C1485 390 1482 265 1458 207"/><text class="label" x="1452" y="350">blanco: R</text>
-  <text x="30" y="1010" font-size="13">Los sufijos 1/0 distinguen recuentos de b positivos o nulos mientras se rebobina hacia la primera celda.</text>
-  <text x="30" y="1033" font-size="13">En cada transición se leen/escriben tres símbolos y se mueve cada cabeza de forma independiente.</text>
-</svg>
+<g id="edge1" class="edge">
+<title>start-&gt;qScan</title>
+<path fill="none" stroke="#263238" stroke-width="1.1" d="M8.64,-551C20.17,-551 59.55,-551 92.15,-551" />
+<polygon fill="#263238" stroke="#263238" stroke-width="1.1" points="92.22,-553.52 99.42,-551 92.22,-548.48 92.22,-553.52" />
+<text text-anchor="middle" x="54.14" y="-554" font-family="sans-serif" font-size="10.00">inicio</text>
+</g>
+
+<g id="edge13" class="edge">
+<title>qScan-&gt;qScan</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M129.9,-568.72C120.09,-593.11 123.67,-623 140.64,-623 156.01,-623 160.39,-598.46 153.78,-575.69" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="156.1,-574.7 151.37,-568.72 151.34,-576.34 156.1,-574.7" />
+<text text-anchor="middle" x="140.64" y="-626" font-family="sans-serif" font-size="10.00">T01-T02</text>
+</g>
+
+<g id="node3" class="node">
+<title>qReset</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="317.11" cy="-551" rx="44.44" ry="18" />
+<text text-anchor="middle" x="317.11" y="-547.9" font-family="sans-serif" font-size="12.00">qReset</text>
+</g>
+
+<g id="edge14" class="edge">
+<title>qScan-&gt;qReset</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M181.67,-551C206.49,-551 238.62,-551 265.25,-551" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="265.4,-553.52 272.6,-551 265.4,-548.48 265.4,-553.52" />
+<text text-anchor="middle" x="227.14" y="-554" font-family="sans-serif" font-size="10.00">T03</text>
+</g>
+
+<g id="edge16" class="edge">
+<title>qReset-&gt;qReset</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M306.12,-568.72C296.09,-593.11 299.75,-623 317.11,-623 332.84,-623 337.32,-598.46 330.56,-575.69" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="332.87,-574.67 328.09,-568.72 328.11,-576.34 332.87,-574.67" />
+<text text-anchor="middle" x="317.11" y="-626" font-family="sans-serif" font-size="10.00">T05-T15</text>
+</g>
+
+<g id="node4" class="node">
+<title>qOrigin</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="499.14" cy="-551" rx="46.61" ry="18" />
+<text text-anchor="middle" x="499.14" y="-547.9" font-family="sans-serif" font-size="12.00">qOrigin</text>
+</g>
+
+<g id="edge15" class="edge">
+<title>qReset-&gt;qOrigin</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M361.69,-551C386.8,-551 418.55,-551 445.11,-551" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="445.25,-553.52 452.45,-551 445.25,-548.48 445.25,-553.52" />
+<text text-anchor="middle" x="407.08" y="-554" font-family="sans-serif" font-size="10.00">T04</text>
+</g>
+
+<g id="node5" class="node">
+<title>qCopyB</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="683.95" cy="-623" rx="47.01" ry="18" />
+<text text-anchor="middle" x="683.95" y="-619.9" font-family="sans-serif" font-size="12.00">qCopyB</text>
+</g>
+
+<g id="edge17" class="edge">
+<title>qOrigin-&gt;qCopyB</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M532.4,-563.71C563.41,-575.92 610.32,-594.4 643.53,-607.47" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="642.77,-609.88 650.39,-610.18 644.62,-605.2 642.77,-609.88" />
+<text text-anchor="middle" x="591.2" y="-590" font-family="sans-serif" font-size="10.00">T16-T21</text>
+</g>
+
+<g id="node6" class="node">
+<title>qSepB0</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="683.95" cy="-479" rx="46.61" ry="18" />
+<text text-anchor="middle" x="683.95" y="-475.9" font-family="sans-serif" font-size="12.00">qSepB0</text>
+</g>
+
+<g id="edge18" class="edge">
+<title>qOrigin-&gt;qSepB0</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M532.4,-538.29C563.5,-526.04 610.61,-507.49 643.83,-494.41" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="644.93,-496.68 650.7,-491.7 643.08,-491.99 644.93,-496.68" />
+<text text-anchor="middle" x="591.2" y="-518" font-family="sans-serif" font-size="10.00">T22-T27</text>
+</g>
+
+<g id="edge19" class="edge">
+<title>qCopyB-&gt;qCopyB</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M672.46,-640.72C661.97,-665.11 665.8,-695 683.95,-695 700.39,-695 705.08,-670.46 698.01,-647.69" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="700.29,-646.6 695.43,-640.72 695.56,-648.34 700.29,-646.6" />
+<text text-anchor="middle" x="683.95" y="-698" font-family="sans-serif" font-size="10.00">T28-T33</text>
+</g>
+
+
+<g id="node7" class="node">
+<title>qStartA1</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="873.62" cy="-623" rx="51.34" ry="18" />
+<text text-anchor="middle" x="873.62" y="-619.9" font-family="sans-serif" font-size="12.00">qStartA1</text>
+</g>
+
+<g id="edge20" class="edge">
+<title>qCopyB-&gt;qStartA1</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M731.34,-623C756.54,-623 787.94,-623 814.73,-623" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="814.95,-625.52 822.15,-623 814.95,-620.48 814.95,-625.52" />
+<text text-anchor="middle" x="776.7" y="-626" font-family="sans-serif" font-size="10.00">T34-T39</text>
+</g>
+
+<g id="node8" class="node">
+<title>qStartA0</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="873.62" cy="-479" rx="51.34" ry="18" />
+<text text-anchor="middle" x="873.62" y="-475.9" font-family="sans-serif" font-size="12.00">qStartA0</text>
+</g>
+
+<g id="edge21" class="edge">
+<title>qSepB0-&gt;qStartA0</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M730.86,-479C756.05,-479 787.55,-479 814.45,-479" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="814.7,-481.52 821.9,-479 814.7,-476.48 814.7,-481.52" />
+<text text-anchor="middle" x="776.7" y="-482" font-family="sans-serif" font-size="10.00">T40-T45</text>
+</g>
+
+
+<g id="node9" class="node">
+<title>qCopyA1</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1068.16" cy="-699" rx="52.23" ry="18" />
+<text text-anchor="middle" x="1068.16" y="-695.9" font-family="sans-serif" font-size="12.00">qCopyA1</text>
+</g>
+
+<g id="edge22" class="edge">
+<title>qStartA1-&gt;qCopyA1</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M908.6,-636.41C941.49,-649.4 991.39,-669.09 1026.4,-682.91" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1025.57,-685.29 1033.2,-685.59 1027.42,-680.61 1025.57,-685.29" />
+<text text-anchor="middle" x="970.54" y="-664" font-family="sans-serif" font-size="10.00">T46-T48</text>
+</g>
+
+<g id="node11" class="node">
+<title>qRewindA0B1</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1282.85" cy="-464" rx="71.65" ry="18" />
+<text text-anchor="middle" x="1282.85" y="-460.9" font-family="sans-serif" font-size="12.00">qRewindA0B1</text>
+</g>
+
+<g id="edge23" class="edge">
+<title>qStartA1-&gt;qRewindA0B1</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M921.68,-616.49C980.93,-607.06 1084.8,-586.37 1166.27,-548 1200.47,-531.9 1234.91,-505.2 1257.18,-486.23" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1259.04,-487.95 1262.85,-481.34 1255.75,-484.13 1259.04,-487.95" />
+<text text-anchor="middle" x="1068.16" y="-601" font-family="sans-serif" font-size="10.00">T49-T51</text>
+</g>
+
+<g id="node10" class="node">
+<title>qCopyA0</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1068.16" cy="-471" rx="52.23" ry="18" />
+<text text-anchor="middle" x="1068.16" y="-467.9" font-family="sans-serif" font-size="12.00">qCopyA0</text>
+</g>
+
+<g id="edge24" class="edge">
+<title>qStartA0-&gt;qCopyA0</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M924.7,-476.92C950.47,-475.85 982.02,-474.54 1008.88,-473.42" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1009.23,-475.93 1016.32,-473.11 1009.02,-470.89 1009.23,-475.93" />
+<text text-anchor="middle" x="970.54" y="-478" font-family="sans-serif" font-size="10.00">T52-T54</text>
+</g>
+
+<g id="node13" class="node">
+<title>qRewindA0B0</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1282.85" cy="-320" rx="71.65" ry="18" />
+<text text-anchor="middle" x="1282.85" y="-316.9" font-family="sans-serif" font-size="12.00">qRewindA0B0</text>
+</g>
+
+<g id="edge25" class="edge">
+<title>qStartA0-&gt;qRewindA0B0</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M908.64,-465.72C981.8,-437.15 1154.14,-369.86 1236.49,-337.71" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1237.42,-340.05 1243.21,-335.08 1235.59,-335.36 1237.42,-340.05" />
+<text text-anchor="middle" x="1068.16" y="-427" font-family="sans-serif" font-size="10.00">T55-T57</text>
+</g>
+
+<g id="edge26" class="edge">
+<title>qCopyA1-&gt;qCopyA1</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1056.17,-716.72C1045.23,-741.11 1049.22,-771 1068.16,-771 1085.32,-771 1090.21,-746.46 1082.83,-723.69" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1085.08,-722.53 1080.14,-716.72 1080.38,-724.34 1085.08,-722.53" />
+<text text-anchor="middle" x="1068.16" y="-774" font-family="sans-serif" font-size="10.00">T58-T60</text>
+</g>
+
+
+<g id="node17" class="node">
+<title>qRewindA1B1</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1282.85" cy="-781" rx="71.65" ry="18" />
+<text text-anchor="middle" x="1282.85" y="-777.9" font-family="sans-serif" font-size="12.00">qRewindA1B1</text>
+</g>
+
+<g id="edge27" class="edge">
+<title>qCopyA1-&gt;qRewindA1B1</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1103.8,-712.36C1139.71,-726.2 1196.02,-747.91 1235.68,-763.2" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1235.26,-765.74 1242.89,-765.98 1237.08,-761.04 1235.26,-765.74" />
+<text text-anchor="middle" x="1165.77" y="-739" font-family="sans-serif" font-size="10.00">T61</text>
+</g>
+
+<g id="edge28" class="edge">
+<title>qCopyA0-&gt;qCopyA0</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1056.17,-488.72C1045.23,-513.11 1049.22,-543 1068.16,-543 1085.32,-543 1090.21,-518.46 1082.83,-495.69" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1085.08,-494.53 1080.14,-488.72 1080.38,-496.34 1085.08,-494.53" />
+<text text-anchor="middle" x="1068.16" y="-546" font-family="sans-serif" font-size="10.00">T62-T64</text>
+</g>
+
+<g id="node18" class="node">
+<title>qRewindA1B0</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1282.85" cy="-608" rx="71.65" ry="18" />
+<text text-anchor="middle" x="1282.85" y="-604.9" font-family="sans-serif" font-size="12.00">qRewindA1B0</text>
+</g>
+
+<g id="edge29" class="edge">
+<title>qCopyA0-&gt;qRewindA1B0</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1093.97,-486.98C1132.62,-511.88 1207.16,-559.89 1249.81,-587.36" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1248.45,-589.48 1255.87,-591.26 1251.18,-585.25 1248.45,-589.48" />
+<text text-anchor="middle" x="1165.77" y="-537" font-family="sans-serif" font-size="10.00">T65</text>
+</g>
+
+<g id="node12" class="node">
+<title>qRewindA0B1Digit</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1552.75" cy="-476" rx="90.17" ry="18" />
+<text text-anchor="middle" x="1552.75" y="-472.9" font-family="sans-serif" font-size="12.00">qRewindA0B1Digit</text>
+</g>
+
+<g id="edge30" class="edge">
+<title>qRewindA0B1-&gt;qRewindA0B1Digit</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1353.54,-467.12C1385.09,-468.53 1422.88,-470.23 1456.96,-471.75" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1456.87,-474.27 1464.17,-472.08 1457.09,-469.24 1456.87,-474.27" />
+<text text-anchor="middle" x="1408.42" y="-473" font-family="sans-serif" font-size="10.00">T66</text>
+</g>
+
+
+<g id="node14" class="node">
+<title>qRewindA0B0Digit</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1552.75" cy="-332" rx="90.17" ry="18" />
+<text text-anchor="middle" x="1552.75" y="-328.9" font-family="sans-serif" font-size="12.00">qRewindA0B0Digit</text>
+</g>
+
+
+<g id="node15" class="node">
+<title>qSepRewindB1</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1552.75" cy="-162" rx="75.99" ry="18" />
+<text text-anchor="middle" x="1552.75" y="-158.9" font-family="sans-serif" font-size="12.00">qSepRewindB1</text>
+</g>
+
+<g id="edge31" class="edge">
+<title>qRewindA0B1Digit-&gt;qSepRewindB1</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1531.88,-458.36C1511.41,-440 1480.69,-409.44 1462.42,-377 1432.29,-323.51 1432.18,-305.26 1423.42,-244.5 1418.33,-209.16 1454.04,-188.21 1489.21,-176.27" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1490.15,-178.61 1496.23,-174 1488.6,-173.82 1490.15,-178.61" />
+<text text-anchor="middle" x="1408.42" y="-236.5" font-family="sans-serif" font-size="10.00">T67</text>
+</g>
+
+<g id="edge32" class="edge">
+<title>qRewindA0B0-&gt;qRewindA0B0Digit</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1353.54,-323.12C1385.09,-324.53 1422.88,-326.23 1456.96,-327.75" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1456.87,-330.27 1464.17,-328.08 1457.09,-325.24 1456.87,-330.27" />
+<text text-anchor="middle" x="1408.42" y="-329" font-family="sans-serif" font-size="10.00">T68</text>
+</g>
+
+
+<g id="node16" class="node">
+<title>qSepRewindB0</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1552.75" cy="-18" rx="75.99" ry="18" />
+<text text-anchor="middle" x="1552.75" y="-14.9" font-family="sans-serif" font-size="12.00">qSepRewindB0</text>
+</g>
+
+<g id="edge33" class="edge">
+<title>qRewindA0B0Digit-&gt;qSepRewindB0</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1491.92,-318.63C1455.9,-306.86 1418.2,-285.75 1423.42,-249.5 1432.18,-188.74 1432.29,-170.49 1462.42,-117 1479.12,-87.35 1506.22,-59.27 1526.39,-40.64" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1528.25,-42.35 1531.88,-35.64 1524.86,-38.62 1528.25,-42.35" />
+<text text-anchor="middle" x="1408.42" y="-252.5" font-family="sans-serif" font-size="10.00">T69</text>
+</g>
+
+
+<g id="node19" class="node">
+<title>qRewindB1</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1814.7" cy="-733" rx="61.3" ry="18" />
+<text text-anchor="middle" x="1814.7" y="-729.9" font-family="sans-serif" font-size="12.00">qRewindB1</text>
+</g>
+
+<g id="edge38" class="edge">
+<title>qSepRewindB1-&gt;qRewindB1</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1569.66,-179.72C1589.59,-202.82 1623.5,-245.22 1643.09,-287 1710.78,-431.35 1662.33,-491.62 1734.09,-634 1748.66,-662.91 1772.7,-691.22 1790.56,-710.11" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1789.08,-712.21 1795.88,-715.66 1792.72,-708.72 1789.08,-712.21" />
+<text text-anchor="middle" x="1688.59" y="-483" font-family="sans-serif" font-size="10.00">T74</text>
+</g>
+
+<g id="node20" class="node">
+<title>qRewindB0</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1814.7" cy="-589" rx="61.3" ry="18" />
+<text text-anchor="middle" x="1814.7" y="-585.9" font-family="sans-serif" font-size="12.00">qRewindB0</text>
+</g>
+
+<g id="edge39" class="edge">
+<title>qSepRewindB0-&gt;qRewindB0</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1574.71,-35.51C1595.2,-53.77 1625.76,-84.26 1643.09,-117 1722.9,-267.82 1658.6,-336.97 1734.09,-490 1748.41,-519.04 1772.49,-547.33 1790.42,-566.18" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1788.96,-568.29 1795.77,-571.72 1792.58,-564.79 1788.96,-568.29" />
+<text text-anchor="middle" x="1688.59" y="-286" font-family="sans-serif" font-size="10.00">T75</text>
+</g>
+
+<g id="edge34" class="edge">
+<title>qRewindA1B1-&gt;qRewindA1B1</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1268.37,-798.72C1255.14,-823.11 1259.96,-853 1282.85,-853 1303.67,-853 1309.54,-828.24 1300.46,-805.4" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1302.66,-804.17 1297.33,-798.72 1298.1,-806.3 1302.66,-804.17" />
+<text text-anchor="middle" x="1282.85" y="-856" font-family="sans-serif" font-size="10.00">T70</text>
+</g>
+
+
+<g id="edge35" class="edge">
+<title>qRewindA1B1-&gt;qRewindB1</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1350.42,-774.97C1452.64,-765.71 1647.07,-748.1 1748.47,-738.91" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1748.97,-741.39 1755.91,-738.23 1748.51,-736.37 1748.97,-741.39" />
+<text text-anchor="middle" x="1552.75" y="-767" font-family="sans-serif" font-size="10.00">T71</text>
+</g>
+
+
+<g id="edge36" class="edge">
+<title>qRewindA1B0-&gt;qRewindA1B0</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1268.37,-625.72C1255.14,-650.11 1259.96,-680 1282.85,-680 1303.67,-680 1309.54,-655.24 1300.46,-632.4" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1302.66,-631.17 1297.33,-625.72 1298.1,-633.3 1302.66,-631.17" />
+<text text-anchor="middle" x="1282.85" y="-683" font-family="sans-serif" font-size="10.00">T72</text>
+</g>
+
+<g id="edge37" class="edge">
+<title>qRewindA1B0-&gt;qRewindB0</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1353.93,-605.49C1456.28,-601.82 1645.39,-595.04 1746.23,-591.42" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1746.53,-593.93 1753.63,-591.15 1746.35,-588.89 1746.53,-593.93" />
+<text text-anchor="middle" x="1552.75" y="-604" font-family="sans-serif" font-size="10.00">T73</text>
+</g>
+
+<g id="edge40" class="edge">
+<title>qRewindB1-&gt;qRewindB1</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1798.97,-750.72C1784.6,-775.11 1789.84,-805 1814.7,-805 1837.32,-805 1843.69,-780.24 1833.82,-757.4" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1835.93,-755.99 1830.42,-750.72 1831.44,-758.28 1835.93,-755.99" />
+<text text-anchor="middle" x="1814.7" y="-808" font-family="sans-serif" font-size="10.00">T76</text>
+</g>
+
+
+<g id="node22" class="node">
+<title>qf</title>
+<ellipse fill="#e7f6e7" stroke="#287a3c" stroke-width="2" cx="2016.01" cy="-589" rx="25.89" ry="25.89" />
+<ellipse fill="none" stroke="#287a3c" stroke-width="2" cx="2016.01" cy="-589" rx="29.92" ry="29.92" />
+<text text-anchor="middle" x="2016.01" y="-585.9" font-family="sans-serif" font-size="12.00">qf</text>
+</g>
+
+<g id="edge41" class="edge">
+<title>qRewindB1-&gt;qf</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1838.95,-716.2C1875.21,-690 1945.2,-639.44 1985.15,-610.58" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1986.93,-612.4 1991.29,-606.14 1983.98,-608.31 1986.93,-612.4" />
+<text text-anchor="middle" x="1940.8" y="-645" font-family="sans-serif" font-size="10.00">T77</text>
+</g>
+
+<g id="node21" class="node">
+<title>qRewindB0Start</title>
+<ellipse fill="#e8f1fb" stroke="#345b7e" stroke-width="1.5" cx="1814.7" cy="-445" rx="80.71" ry="18" />
+<text text-anchor="middle" x="1814.7" y="-441.9" font-family="sans-serif" font-size="12.00">qRewindB0Start</text>
+</g>
+
+
+<g id="edge42" class="edge">
+<title>qRewindB0-&gt;qRewindB0Start</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1814.7,-570.91C1814.7,-545.56 1814.7,-499.36 1814.7,-470.52" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1817.22,-470.44 1814.7,-463.24 1812.18,-470.44 1817.22,-470.44" />
+<text text-anchor="middle" x="1806.2" y="-514.5" font-family="sans-serif" font-size="10.00">T78</text>
+</g>
+
+<g id="edge43" class="edge">
+<title>qRewindB0Start-&gt;qf</title>
+<path fill="none" stroke="#35424b" stroke-width="1.1" d="M1839.74,-462.37C1876.3,-488.78 1945.8,-538.99 1985.41,-567.61" />
+<polygon fill="#35424b" stroke="#35424b" stroke-width="1.1" points="1984.19,-569.84 1991.5,-572.02 1987.14,-565.76 1984.19,-569.84" />
+<text text-anchor="middle" x="1940.8" y="-539" font-family="sans-serif" font-size="10.00">T79</text>
+</g>
+</g>
+<rect x="0.00" y="995.60" width="2103.32" height="716.00" fill="#f7f9fb" stroke="#c7d0d8" stroke-width="1" /><text x="24.00" y="1025.60" font-family="sans-serif" font-size="16" font-weight="bold" fill="#17212b">Clave de las 79 transiciones</text><text x="24.00" y="1045.60" font-family="sans-serif" font-size="10" font-weight="normal" fill="#17212b">Cada fila indica: lectura de las cintas / escritura de las cintas / movimientos de las cabezas.</text><text x="24.00" y="1073.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T01  qScan (a,.,.) → qScan (a,.,1)  [R,S,R]</text><text x="24.00" y="1089.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T02  qScan (b,.,.) → qScan (b,1,.)  [R,R,S]</text><text x="24.00" y="1105.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T03  qScan (.,.,.) → qReset (.,.,.)  [L,L,L]</text><text x="24.00" y="1121.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T04  qReset (.,.,.) → qOrigin (.,.,.)  [R,R,R]</text><text x="24.00" y="1137.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T05  qReset (a,1,1) → qReset (a,1,1)  [L,L,L]</text><text x="24.00" y="1153.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T06  qReset (a,1,.) → qReset (a,1,.)  [L,L,S]</text><text x="24.00" y="1169.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T07  qReset (a,.,1) → qReset (a,.,1)  [L,S,L]</text><text x="24.00" y="1185.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T08  qReset (a,.,.) → qReset (a,.,.)  [L,S,S]</text><text x="24.00" y="1201.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T09  qReset (b,1,1) → qReset (b,1,1)  [L,L,L]</text><text x="24.00" y="1217.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T10  qReset (b,1,.) → qReset (b,1,.)  [L,L,S]</text><text x="24.00" y="1233.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T11  qReset (b,.,1) → qReset (b,.,1)  [L,S,L]</text><text x="24.00" y="1249.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T12  qReset (b,.,.) → qReset (b,.,.)  [L,S,S]</text><text x="24.00" y="1265.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T13  qReset (.,1,1) → qReset (.,1,1)  [S,L,L]</text><text x="24.00" y="1281.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T14  qReset (.,1,.) → qReset (.,1,.)  [S,L,S]</text><text x="24.00" y="1297.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T15  qReset (.,.,1) → qReset (.,.,1)  [S,S,L]</text><text x="24.00" y="1313.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T16  qOrigin (a,1,1) → qCopyB (1,1,1)  [R,R,S]</text><text x="24.00" y="1329.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T17  qOrigin (a,1,.) → qCopyB (1,1,.)  [R,R,S]</text><text x="24.00" y="1345.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T18  qOrigin (b,1,1) → qCopyB (1,1,1)  [R,R,S]</text><text x="24.00" y="1361.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T19  qOrigin (b,1,.) → qCopyB (1,1,.)  [R,R,S]</text><text x="24.00" y="1377.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T20  qOrigin (.,1,1) → qCopyB (1,1,1)  [R,R,S]</text><text x="24.00" y="1393.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T21  qOrigin (.,1,.) → qCopyB (1,1,.)  [R,R,S]</text><text x="24.00" y="1409.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T22  qOrigin (a,.,1) → qSepB0 (0,.,1)  [R,S,S]</text><text x="24.00" y="1425.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T23  qOrigin (a,.,.) → qSepB0 (0,.,.)  [R,S,S]</text><text x="24.00" y="1441.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T24  qOrigin (b,.,1) → qSepB0 (0,.,1)  [R,S,S]</text><text x="24.00" y="1457.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T25  qOrigin (b,.,.) → qSepB0 (0,.,.)  [R,S,S]</text><text x="24.00" y="1473.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T26  qOrigin (.,.,1) → qSepB0 (0,.,1)  [R,S,S]</text><text x="24.00" y="1489.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T27  qOrigin (.,.,.) → qSepB0 (0,.,.)  [R,S,S]</text><text x="24.00" y="1505.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T28  qCopyB (a,1,1) → qCopyB (1,1,1)  [R,R,S]</text><text x="24.00" y="1521.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T29  qCopyB (a,1,.) → qCopyB (1,1,.)  [R,R,S]</text><text x="24.00" y="1537.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T30  qCopyB (b,1,1) → qCopyB (1,1,1)  [R,R,S]</text><text x="24.00" y="1553.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T31  qCopyB (b,1,.) → qCopyB (1,1,.)  [R,R,S]</text><text x="24.00" y="1569.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T32  qCopyB (.,1,1) → qCopyB (1,1,1)  [R,R,S]</text><text x="24.00" y="1585.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T33  qCopyB (.,1,.) → qCopyB (1,1,.)  [R,R,S]</text><text x="24.00" y="1601.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T34  qCopyB (a,.,1) → qStartA1 (.,.,1)  [R,S,S]</text><text x="24.00" y="1617.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T35  qCopyB (a,.,.) → qStartA1 (.,.,.)  [R,S,S]</text><text x="24.00" y="1633.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T36  qCopyB (b,.,1) → qStartA1 (.,.,1)  [R,S,S]</text><text x="24.00" y="1649.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T37  qCopyB (b,.,.) → qStartA1 (.,.,.)  [R,S,S]</text><text x="24.00" y="1665.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T38  qCopyB (.,.,1) → qStartA1 (.,.,1)  [R,S,S]</text><text x="24.00" y="1681.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T39  qCopyB (.,.,.) → qStartA1 (.,.,.)  [R,S,S]</text><text x="24.00" y="1697.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T40  qSepB0 (a,.,1) → qStartA0 (.,.,1)  [R,S,S]</text><text x="1075.66" y="1073.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T41  qSepB0 (a,.,.) → qStartA0 (.,.,.)  [R,S,S]</text><text x="1075.66" y="1089.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T42  qSepB0 (b,.,1) → qStartA0 (.,.,1)  [R,S,S]</text><text x="1075.66" y="1105.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T43  qSepB0 (b,.,.) → qStartA0 (.,.,.)  [R,S,S]</text><text x="1075.66" y="1121.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T44  qSepB0 (.,.,1) → qStartA0 (.,.,1)  [R,S,S]</text><text x="1075.66" y="1137.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T45  qSepB0 (.,.,.) → qStartA0 (.,.,.)  [R,S,S]</text><text x="1075.66" y="1153.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T46  qStartA1 (a,.,1) → qCopyA1 (1,.,1)  [R,S,R]</text><text x="1075.66" y="1169.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T47  qStartA1 (b,.,1) → qCopyA1 (1,.,1)  [R,S,R]</text><text x="1075.66" y="1185.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T48  qStartA1 (.,.,1) → qCopyA1 (1,.,1)  [R,S,R]</text><text x="1075.66" y="1201.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T49  qStartA1 (a,.,.) → qRewindA0B1 (0,.,.)  [R,S,S]</text><text x="1075.66" y="1217.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T50  qStartA1 (b,.,.) → qRewindA0B1 (0,.,.)  [R,S,S]</text><text x="1075.66" y="1233.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T51  qStartA1 (.,.,.) → qRewindA0B1 (0,.,.)  [R,S,S]</text><text x="1075.66" y="1249.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T52  qStartA0 (a,.,1) → qCopyA0 (1,.,1)  [R,S,R]</text><text x="1075.66" y="1265.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T53  qStartA0 (b,.,1) → qCopyA0 (1,.,1)  [R,S,R]</text><text x="1075.66" y="1281.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T54  qStartA0 (.,.,1) → qCopyA0 (1,.,1)  [R,S,R]</text><text x="1075.66" y="1297.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T55  qStartA0 (a,.,.) → qRewindA0B0 (0,.,.)  [R,S,S]</text><text x="1075.66" y="1313.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T56  qStartA0 (b,.,.) → qRewindA0B0 (0,.,.)  [R,S,S]</text><text x="1075.66" y="1329.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T57  qStartA0 (.,.,.) → qRewindA0B0 (0,.,.)  [R,S,S]</text><text x="1075.66" y="1345.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T58  qCopyA1 (a,.,1) → qCopyA1 (1,.,1)  [R,S,R]</text><text x="1075.66" y="1361.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T59  qCopyA1 (b,.,1) → qCopyA1 (1,.,1)  [R,S,R]</text><text x="1075.66" y="1377.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T60  qCopyA1 (.,.,1) → qCopyA1 (1,.,1)  [R,S,R]</text><text x="1075.66" y="1393.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T61  qCopyA1 (.,.,.) → qRewindA1B1 (.,.,.)  [L,S,S]</text><text x="1075.66" y="1409.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T62  qCopyA0 (a,.,1) → qCopyA0 (1,.,1)  [R,S,R]</text><text x="1075.66" y="1425.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T63  qCopyA0 (b,.,1) → qCopyA0 (1,.,1)  [R,S,R]</text><text x="1075.66" y="1441.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T64  qCopyA0 (.,.,1) → qCopyA0 (1,.,1)  [R,S,R]</text><text x="1075.66" y="1457.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T65  qCopyA0 (.,.,.) → qRewindA1B0 (.,.,.)  [L,S,S]</text><text x="1075.66" y="1473.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T66  qRewindA0B1 (.,.,.) → qRewindA0B1Digit (.,.,.)  [L,S,S]</text><text x="1075.66" y="1489.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T67  qRewindA0B1Digit (0,.,.) → qSepRewindB1 (0,.,.)  [L,S,S]</text><text x="1075.66" y="1505.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T68  qRewindA0B0 (.,.,.) → qRewindA0B0Digit (.,.,.)  [L,S,S]</text><text x="1075.66" y="1521.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T69  qRewindA0B0Digit (0,.,.) → qSepRewindB0 (0,.,.)  [L,S,S]</text><text x="1075.66" y="1537.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T70  qRewindA1B1 (1,.,.) → qRewindA1B1 (1,.,.)  [L,S,S]</text><text x="1075.66" y="1553.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T71  qRewindA1B1 (.,.,.) → qRewindB1 (.,.,.)  [L,S,S]</text><text x="1075.66" y="1569.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T72  qRewindA1B0 (1,.,.) → qRewindA1B0 (1,.,.)  [L,S,S]</text><text x="1075.66" y="1585.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T73  qRewindA1B0 (.,.,.) → qRewindB0 (.,.,.)  [L,S,S]</text><text x="1075.66" y="1601.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T74  qSepRewindB1 (.,.,.) → qRewindB1 (.,.,.)  [L,S,S]</text><text x="1075.66" y="1617.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T75  qSepRewindB0 (.,.,.) → qRewindB0 (.,.,.)  [L,S,S]</text><text x="1075.66" y="1633.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T76  qRewindB1 (1,.,.) → qRewindB1 (1,.,.)  [L,S,S]</text><text x="1075.66" y="1649.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T77  qRewindB1 (.,.,.) → qf (.,.,.)  [R,S,S]</text><text x="1075.66" y="1665.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T78  qRewindB0 (0,.,.) → qRewindB0Start (0,.,.)  [L,S,S]</text><text x="1075.66" y="1681.60" font-family="monospace" font-size="9.2" font-weight="normal" fill="#17212b">T79  qRewindB0Start (.,.,.) → qf (.,.,.)  [R,S,S]</text></svg>
