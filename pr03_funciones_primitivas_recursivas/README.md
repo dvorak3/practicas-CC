@@ -64,10 +64,10 @@ la notación habitual `-x` para la base y `-y` para el exponente.
   son no propietarios y solo son válidos mientras viva la fábrica.
 - `ContadorLlamadas` se comparte entre todas las funciones. Cuenta las
   evaluaciones de las funciones y cada despliegue recursivo de la recursión
-  primitiva. Cada evaluación de una composición cuenta como una llamada, igual
+  primitiva. **Cada evaluación de una composición cuenta como una llamada, igual
   que las evaluaciones de sus funciones interiores y de la función exterior.
   Por tanto, el total incluye funciones básicas, composiciones y recursiones,
-  no solo llamadas a `potencia`.
+  no solo llamadas a `potencia`.**
 
 La recursión se evalúa iterativamente para evitar consumir la pila del programa
 en cada nivel; cada iteración representa y contabiliza un despliegue de la
