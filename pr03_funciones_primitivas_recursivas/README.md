@@ -33,7 +33,7 @@ build/funciones_primitivas_recursivas -x 3 -y 4
 ```
 
 La salida contiene el resultado y el número total de llamadas a funciones.
-Los argumentos deben ser números naturales representables con `uint64_t`.
+Los argumentos deben ser valores `Natural` representables con `uint64_t`.
 Si el resultado no cabe en ese tipo se informa del desbordamiento. Se considera
 `0^0 = 1`, de acuerdo con el caso base de la definición recursiva usada aquí.
 
@@ -59,10 +59,14 @@ la notación habitual `-x` para la base y `-y` para el exponente.
 - `Composicion` y `RecursionPrimitiva` implementan las dos operaciones de
   construcción solicitadas.
 - `FactoryFunciones` crea las funciones básicas y construye la suma, el
-  producto y la potencia reutilizando los componentes.
+  producto y la potencia reutilizando los componentes. Es propietaria de las
+  funciones dinámicas y las libera en su destructor; los punteros que devuelve
+  son no propietarios y solo son válidos mientras viva la fábrica.
 - `ContadorLlamadas` se comparte entre todas las funciones. Cuenta las
   evaluaciones de las funciones y cada despliegue recursivo de la recursión
-  primitiva. Por tanto, incluye funciones básicas, composiciones y recursiones,
+  primitiva. Cada evaluación de una composición cuenta como una llamada, igual
+  que las evaluaciones de sus funciones interiores y de la función exterior.
+  Por tanto, el total incluye funciones básicas, composiciones y recursiones,
   no solo llamadas a `potencia`.
 
 La recursión se evalúa iterativamente para evitar consumir la pila del programa

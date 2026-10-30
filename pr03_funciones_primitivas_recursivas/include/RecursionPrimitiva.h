@@ -1,23 +1,32 @@
 #ifndef RECURSION_PRIMITIVA_H
 #define RECURSION_PRIMITIVA_H
 
-#include <memory>
+#include <vector>
 
 #include "FuncionPrimitivaRecursiva.h"
 
+/**
+ * @brief Construye una función mediante el esquema de recursión primitiva.
+ *
+ * El primer argumento es el índice de recursión; los restantes se mantienen
+ * como parámetros durante todas las iteraciones.
+ */
 class RecursionPrimitiva final : public FuncionPrimitivaRecursiva {
  public:
+  /// @brief Crea la recursión a partir del caso base y el paso recursivo.
   RecursionPrimitiva(
-      std::shared_ptr<const FuncionPrimitivaRecursiva> casoBase,
-      std::shared_ptr<const FuncionPrimitivaRecursiva> pasoRecursivo,
+      const FuncionPrimitivaRecursiva* casoBase,
+      const FuncionPrimitivaRecursiva* pasoRecursivo,
       ContadorLlamadas& contador);
 
  protected:
-  Natural calcular(const Argumentos& argumentos) const override;
+  /// @brief Evalúa el caso base y despliega iterativamente el paso recursivo.
+  Natural calcular(const std::vector<Natural>& argumentos) const override;
 
  private:
-  std::shared_ptr<const FuncionPrimitivaRecursiva> caso_base_;
-  std::shared_ptr<const FuncionPrimitivaRecursiva> paso_recursivo_;
+  const FuncionPrimitivaRecursiva* caso_base_;  ///< Función para índice cero.
+  const FuncionPrimitivaRecursiva*
+      paso_recursivo_;  ///< Función para cada sucesor.
 };
 
 #endif

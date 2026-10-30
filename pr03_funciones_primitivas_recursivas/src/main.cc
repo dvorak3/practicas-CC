@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include <exception>
 #include <iostream>
-#include <memory>
 #include <string>
 #include <string_view>
 #include <system_error>
@@ -11,6 +10,10 @@
 #include "Tipos.h"
 
 namespace {
+/**
+ * @brief Muestra la sintaxis de uso y las opciones de la aplicación.
+ * @param programa Nombre del ejecutable proporcionado por el sistema.
+ */
 void mostrarAyuda(const char* programa) {
   std::cout << "Uso: " << programa << " -x <natural> -y <natural>\n"
             << "  -x <n>  Base de la potencia.\n"
@@ -18,6 +21,14 @@ void mostrarAyuda(const char* programa) {
             << "  -h      Muestra esta ayuda.\n";
 }
 
+/**
+ * @brief Convierte texto decimal a un número natural representable.
+ * @param texto Texto que se va a interpretar.
+ * @param opcion Nombre de la opción asociada, para el mensaje de error.
+ * @return Valor natural convertido.
+ * @throws std::invalid_argument Si el texto es negativo, está vacío, no es
+ * decimal válido o excede el rango de Natural.
+ */
 Natural convertirNatural(std::string_view texto, const char* opcion) {
   if (texto.empty() || texto.front() == '-') {
     throw std::invalid_argument(std::string("Valor natural no valido para ") +
@@ -34,13 +45,24 @@ Natural convertirNatural(std::string_view texto, const char* opcion) {
   return valor;
 }
 
+/**
+ * @brief Agrupa la base y el exponente recibidos por línea de comandos.
+ */
 struct Opciones {
-  Natural base{0};
-  Natural exponente{0};
-  bool tiene_base{false};
-  bool tiene_exponente{false};
+  Natural base{0};  ///< Base de la potencia.
+  Natural exponente{0};  ///< Exponente de la potencia.
+  bool tiene_base{false};  ///< Indica si se proporcionó `-x`.
+  bool tiene_exponente{false};  ///< Indica si se proporcionó `-y`.
 };
 
+/**
+ * @brief Analiza las opciones y convierte sus valores a números naturales.
+ * @param argc Cantidad de argumentos recibidos por el programa.
+ * @param argv Vector de argumentos de la línea de comandos.
+ * @return Opciones validadas para calcular la potencia.
+ * @throws std::invalid_argument Si una opción es desconocida, se repite, no
+ * tiene valor o falta la base o el exponente.
+ */
 Opciones analizarOpciones(int argc, char* argv[]) {
   Opciones opciones;
   for (int indice = 1; indice < argc; ++indice) {
@@ -76,12 +98,18 @@ Opciones analizarOpciones(int argc, char* argv[]) {
 }
 }  // namespace
 
+/**
+ * @brief Calcula y muestra la potencia indicada en la línea de comandos.
+ * @param argc Cantidad de argumentos recibidos por el programa.
+ * @param argv Valores de los argumentos.
+ * @return Cero si el cálculo termina correctamente; uno si se produce un error.
+ */
 int main(int argc, char* argv[]) {
   try {
     const Opciones opciones = analizarOpciones(argc, argv);
     ContadorLlamadas contador;
-    const FactoryFunciones factory(contador);
-    const auto potencia = factory.crearPotencia();
+    FactoryFunciones factory(contador);
+    const FuncionPrimitivaRecursiva* potencia = factory.crearPotencia();
     const Natural resultado =
         (*potencia)({opciones.exponente, opciones.base});
 

@@ -2,9 +2,8 @@
 #define TIPOS_H
 
 #include <cstdint>
-#include <vector>
 
+/// @brief Tipo usado para representar los números naturales de la práctica.
 using Natural = std::uint64_t;
-using Argumentos = std::vector<Natural>;
 
 #endif
